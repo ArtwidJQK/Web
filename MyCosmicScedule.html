@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Schedule - Lịch Học</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary: #6e22bd;
+            --primary-light: #9d4edd;
+            --secondary: #00b4d8;
+            --dark: #0a0e29;
+            --darker: #050914;
+            --light: #e0fbfc;
+            --accent: #ff5678;
+            --star-color: #ffffff;
+            --planet1: #ff9f68;
+            --planet2: #90e0ef;
+            --planet3: #c8b6ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(ellipse at bottom, var(--dark) 0%, var(--darker) 100%);
+            color: var(--light);
+            overflow-x: hidden;
+            min-height: 100vh;
+            perspective: 1000px;
+        }
+        
+        .cosmic-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Stars Background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: var(--star-color);
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 5s infinite;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        /* Header Styles */
+        .cosmic-header {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 20px;
+            position: relative;
+        }
+        
+        .cosmic-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--secondary), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+            margin-bottom: 10px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+            transition: all 0.5s ease;
+        }
+        
+        .cosmic-title:hover {
+            transform: translateZ(20px);
+            text-shadow: 0 0 30px rgba(157, 78, 221, 0.7);
+        }
+        
+        .cosmic-subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        /* Controls */
+        .cosmic-controls {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 15px;
+        }
+        
+        .cosmic-button {
+            padding: 12px 24px;
+            background: linear-gradient(45deg, var(--primary) 0%, var(--primary-light) 100%);
+            border: none;
+            border-radius: 30px;
+            color: var(--light);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 5px 15px rgba(110, 34, 189, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .cosmic-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--secondary) 0%, var(--primary) 100%);
+            transition: width 0.5s ease;
+            z-index: -1;
+            border-radius: 30px;
+        }
+        
+        .cosmic-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(110, 34, 189, 0.6);
+        }
+        
+        .cosmic-button:hover::before {
+            width: 100%;
+        }
+        
+        .cosmic-button:active {
+            transform: translateY(-2px);
+        }
+        
+        /* Current Week Display */
+        .current-week-display {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--light);
+            text-shadow: 0 0 10px var(--primary-light);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        /* Schedule Grid */
+        .schedule-galaxy {
+            background: rgba(10, 14, 41, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                        inset 0 0 50px rgba(157, 78, 221, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            overflow: hidden;
+        }
+        
+        .schedule-galaxy::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, var(--primary) 0%, transparent 60%, var(--secondary) 100%);
+            z-index: -1;
+            border-radius: 30px;
+            filter: blur(20px);
+            opacity: 0.5;
+        }
+        
+        .days-orbit {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .day-planet {
+            background: rgba(5, 9, 20, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            min-height: 180px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0);
+        }
+        
+        .day-planet:hover {
+            transform: translateZ(10px) scale(1.03);
+            box-shadow: 0 0 30px rgba(157, 78, 221, 0.4);
+            border-color: rgba(157, 78, 221, 0.5);
+        }
+        
+        .day-planet::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.1;
+            z-index: -1;
+            transition: all 0.5s ease;
+        }
+        
+        .day-planet:nth-child(1)::before {
+            background-color: var(--planet1);
+            top: -50px;
+            left: -50px;
+        }
+        
+        .day-planet:nth-child(2)::before {
+            background-color: var(--planet2);
+            bottom: -50px;
+            right: -50px;
+        }
+        
+        .day-planet:nth-child(3)::before {
+            background-color: var(--planet3);
+            top: -30px;
+            right: -30px;
+        }
+        
+        .day-planet:nth-child(4)::before {
+            background-color: var(--accent);
+            bottom: -40px;
+            left: -40px;
+        }
+        
+        .day-planet:nth-child(5)::before {
+            background-color: var(--secondary);
+            top: -60px;
+            right: -20px;
+        }
+        
+        .day-planet:nth-child(6)::before {
+            background-color: var(--primary-light);
+            bottom: -20px;
+            right: -60px;
+        }
+        
+        .day-planet:nth-child(7)::before {
+            background-color: var(--planet1);
+            top: -40px;
+            left: -20px;
+        }
+        
+        .day-planet:hover::before {
+            opacity: 0.2;
+        }
+        
+        .day-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+            color: var(--light);
+            text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+            position: relative;
+        }
+        
+        .day-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--primary-light), transparent);
+        }
+        
+        .class-module {
+            background: rgba(110, 34, 189, 0.15);
+            border-left: 3px solid var(--accent);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .class-module:hover {
+            background: rgba(110, 34, 189, 0.25);
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .class-time {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .class-name {
+            font-weight: 500;
+        }
+        
+        /* Entrance Animation */
+        .entrance-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--darker);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 1s ease;
+        }
+        
+        .entrance-title {
+            font-size: 3rem;
+            background: linear-gradient(to right, var(--secondary), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1.5s forwards 0.5s;
+        }
+        
+        .entrance-subtitle {
+            font-size: 1.5rem;
+            color: var(--light);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.5s forwards 1s;
+        }
+        
+        .entrance-loader {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            border-radius: 4px;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards 1.5s;
+        }
+        
+        .entrance-loader-progress {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 4px;
+            animation: loading 2s forwards 1.7s;
+        }
+        
+        .planets-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+            filter: blur(5px);
+        }
+        
+        .planet1 {
+            width: 150px;
+            height: 150px;
+            background-color: var(--planet1);
+            top: 20%;
+            left: -50px;
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .planet2 {
+            width: 200px;
+            height: 200px;
+            background-color: var(--planet2);
+            bottom: 10%;
+            right: -70px;
+            animation: float 20s infinite ease-in-out reverse;
+        }
+        
+        .planet3 {
+            width: 100px;
+            height: 100px;
+            background-color: var(--planet3);
+            top: 60%;
+            left: 10%;
+            animation: float 12s infinite ease-in-out 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes loading {
+            to {
+                width: 100%;
+            }
+        }
+        
+        /* Media Queries */
+        @media (max-width: 1024px) {
+            .days-orbit {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .days-orbit {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cosmic-title {
+                font-size: 2.5rem;
+            }
+            
+            .cosmic-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .days-orbit {
+                grid-template-columns: 1fr;
+            }
+            
+            .cosmic-title {
+                font-size: 2rem;
+            }
+            
+            .cosmic-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Entrance Animation -->
+    <div class="entrance-overlay">
+        <div class="entrance-title">COSMIC SCHEDULE</div>
+        <div class="entrance-subtitle">Khám phá lịch học trong vũ trụ bao la</div>
+        <div class="entrance-loader">
+            <div class="entrance-loader-progress"></div>
+        </div>
+    </div>
+    
+    <!-- Stars Background -->
+    <div class="stars"></div>
+    
+    <!-- Planets Background -->
+    <div class="planets-container">
+        <div class="planet planet1"></div>
+        <div class="planet planet2"></div>
+        <div class="planet planet3"></div>
+    </div>
+    
+    <div class="cosmic-container">
+        <header class="cosmic-header">
+            <h1 class="cosmic-title">COSMIC SCHEDULE</h1>
+            <p class="cosmic-subtitle">Lịch học được sắp xếp theo quy luật vũ trụ</p>
+        </header>
+        
+        <div class="cosmic-controls">
+            <button class="cosmic-button" id="prevWeek">◀ Tuần trước</button>
+            <button class="cosmic-button" id="currentWeek">Tuần hiện tại</button>
+            <button class="cosmic-button" id="nextWeek">Tuần sau ▶</button>
+        </div>
+        
+        <div class="current-week-display" id="weekDisplay">
+            Tuần: 10/03/2025 - 16/03/2025
+        </div>
+        
+        <div class="schedule-galaxy">
+            <!-- ĐOẠN NÀY BẠN CÓ THỂ THAY ĐỔI LỊCH HỌC THEO THỜI GIAN BIỂU CỦA BẠN -->
+            <div class="days-orbit">
+                <!-- Thứ Hai -->
+                <div class="day-planet">
+                    <div class="day-name">Thứ Hai</div>
+                    <div class="class-module">
+                        <div class="class-time">12:25 - 14:55</div>
+                        <div class="class-name">Mạng máy tính</div>
+		        	<div class="class-name">B208</div>
+                    </div>
+                    <div class="class-module">
+                        <div class="class-time">15:05 - 17:35</div>
+                        <div class="class-name">Pháp luật đại cương</div>
+				<div class="class-name">B108</div>
+                    </div>
+                </div>
+                
+                <!-- Thứ Ba -->
+                <div class="day-planet">
+                    <div class="day-name">Thứ Ba</div>
+                    <div class="class-module">
+                        <div class="class-time">9:25 - 11:55</div>
+                        <div class="class-name">Kiến trúc máy tính và hệ điều hành</div>
+				<div class="class-name">B206</div>
+                    </div>
+                    <div class="class-module">
+                        <div class="class-time">15:05 - 17:35</div>
+                        <div class="class-name">Mạng máy tính</div>
+				<div class="class-name">B507</div>
+                    </div>
+                </div>
+                
+                <!-- Thứ Tư -->
+                <div class="day-planet">
+                    <div class="day-name">Thứ Tư</div>
+                    <div class="class-module">
+                        <div class="class-time">9:25 - 11:55</div>
+                        <div class="class-name">THỰC HÀNH Kiến trúc máy tính và hệ điều hành</div>
+				<div class="class-name">B505</div>
+                    </div>
+                </div>
+                
+                <!-- Thứ Năm -->
+                <div class="day-planet">
+                    <div class="day-name">Thứ Năm</div>
+                    <div class="class-module">
+                        <div class="class-time">9:25 - 11:55</div>
+                        <div class="class-name">Database</div>
+				<div class="class-name">B202</div>
+                    </div>
+                    <div class="class-module">
+                        <div class="class-time">15:05 - 17:35</div>
+                        <div class="class-name">Toán giải tích</div>
+				<div class="class-name">B206</div>
+                    </div>
+                </div>
+                
+                <!-- Thứ Sáu -->
+                <div class="day-planet">
+                    <div class="day-name">Thứ Sáu</div>
+                     <!-- Không có lịch học -->
+                </div>
+                
+                <!-- Thứ Bảy -->
+                <div class="day-planet">
+                    <div class="day-name">Thứ Bảy</div>
+                 <div class="class-module">
+                        <div class="class-time">9:25 - 11:55</div>
+                        <div class="class-name">THỰC HÀNH Database</div>
+				<div class="class-name">B505</div>
+	 	 </div>
+                 <div class="class-module">
+                        <div class="class-time">15:05 - 17:35</div>
+                        <div class="class-name">Toán giải tích</div>
+				<div class="class-name">B206</div>
+                    </div>
+                </div>
+                
+                <!-- Chủ Nhật -->
+                <div class="day-planet">
+                    <div class="day-name">Chủ Nhật</div>
+                    <!-- Không có lịch học -->
+                </div>
+            </div>
+            <!-- KẾT THÚC PHẦN CÓ THỂ THAY ĐỔI -->
+        </div>
+    </div>
+    
+    <script>
+        // Tạo hiệu ứng sao lấp lánh
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            const starsCount = 200;
+            
+            for (let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Kích thước ngẫu nhiên
+                const size = Math.random() * 3;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Vị trí ngẫu nhiên
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                star.style.left = `${posX}%`;
+                star.style.top = `${posY}%`;
+                
+                // Thời gian animation ngẫu nhiên
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                star.style.animationDuration = `${5 + Math.random() * 10}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Hiệu ứng intro và khởi tạo
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            
+            // Xử lý entrance animation
+            setTimeout(() => {
+                const entranceOverlay = document.querySelector('.entrance-overlay');
+                entranceOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    entranceOverlay.style.display = 'none';
+                }, 1000);
+            }, 4000);
+            
+            // Xử lý nút tuần trước/sau
+            const btnPrevWeek = document.getElementById('prevWeek');
+            const btnNextWeek = document.getElementById('nextWeek');
+            const btnCurrentWeek = document.getElementById('currentWeek');
+            const weekDisplay = document.getElementById('weekDisplay');
+            const scheduleGalaxy = document.querySelector('.schedule-galaxy');
+            
+            const weeks = [
+                "03/03/2025 - 09/03/2025",
+                "10/03/2025 - 16/03/2025",
+                "17/03/2025 - 23/03/2025",
+                "24/03/2025 - 30/03/2025"
+            ];
+            
+            let currentWeekIndex = 1; // Mặc định là tuần hiện tại (10/03 - 16/03)
+            
+            function updateWeekDisplay() {
+                weekDisplay.textContent = `Tuần: ${weeks[currentWeekIndex]}`;
+            }
+            
+            function changeWeek(direction) {
+                // Hiệu ứng chuyển đổi
+                scheduleGalaxy.style.opacity = '0';
+                scheduleGalaxy.style.transform = direction === 'next' 
+                    ? 'translateX(50px) rotateY(10deg)' 
+                    : 'translateX(-50px) rotateY(-10deg)';
+                
+                setTimeout(() => {
+                    if (direction === 'next' && currentWeekIndex < weeks.length - 1) {
+                        currentWeekIndex++;
+                    } else if (direction === 'prev' && currentWeekIndex > 0) {
+                        currentWeekIndex--;
+                    } else if (direction === 'current') {
+                        currentWeekIndex = 1;
+                    }
+                    
+                    updateWeekDisplay();
+                    
+                    // Cập nhật lịch học tại đây (trong ứng dụng thực tế)
+                    // updateScheduleContent(currentWeekIndex);
+                    
+                    scheduleGalaxy.style.opacity = '1';
+                    scheduleGalaxy.style.transform = 'translateX(0) rotateY(0deg)';
+                }, 500);
+            }
+            
+            btnPrevWeek.addEventListener('click', () => changeWeek('prev'));
+            btnNextWeek.addEventListener('click', () => changeWeek('next'));
+            btnCurrentWeek.addEventListener('click', () => changeWeek('current'));
+            
+            // Thêm hiệu ứng hover 3D cho các thành phần
+            const title = document.querySelector('.cosmic-title');
+            
+            document.addEventListener('mousemove', (e) => {
+                const x = e.clientX / window.innerWidth - 0.5;
+                const y = e.clientY / window.innerHeight - 0.5;
+                
+                title.style.transform = `translateZ(20px) rotateX(${y * 10}deg) rotateY(${-x * 10}deg)`;
+                scheduleGalaxy.style.transform = `perspective(1000px) rotateX(${y * 2}deg) rotateY(${-x * 2}deg)`;
+            });
+        });
+    </script>
+</body>
+</html>
