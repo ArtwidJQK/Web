@@ -591,8 +591,8 @@
 	 	 </div>
                  <div class="class-module">
                         <div class="class-time">15:05 - 17:35</div>
-                        <div class="class-name">Toán giải tích</div>
-				<div class="class-name">B206</div>
+                        <div class="class-name">Giáo dục thể chất</div>
+				<div class="class-name">Sân bóng đá GDU</div>
                     </div>
                 </div>
                 
@@ -610,7 +610,7 @@
         // Tạo hiệu ứng sao lấp lánh
         function createStars() {
             const starsContainer = document.querySelector('.stars');
-            const starsCount = 200;
+            const starsCount = 250;
             
             for (let i = 0; i < starsCount; i++) {
                 const star = document.createElement('div');
@@ -659,7 +659,9 @@
                 "03/03/2025 - 09/03/2025",
                 "10/03/2025 - 16/03/2025",
                 "17/03/2025 - 23/03/2025",
-                "24/03/2025 - 30/03/2025"
+                "24/03/2025 - 30/03/2025",
+		"31/03/2025 - 06/04/2025",
+                "07/04/2025 - 13/04/2025"
             ];
             
             let currentWeekIndex = 1; // Mặc định là tuần hiện tại (10/03 - 16/03)
