@@ -1,0 +1,601 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chào Phạm Tổng!</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<style>
+:root {
+    --primary: #6e22bd;
+    --primary-light: #9d4edd;
+    --secondary: #00b4d8;
+    --dark: #0a0e29;
+    --darker: #050914;
+    --light: #e0fbfc;
+    --accent: #ff5678;
+    --star-color: #ffffe0; /* Light Yellow for stars */
+    --night-bg-start: #121940;
+    --night-bg-end: #0c0d2e;
+    --day-bg-start: #e0ffff;   /* Lighter Light Blue Day */
+    --day-bg-end: #b0e0e6; /* Pale Turquoise */
+    --pink-bg-start: #ffe4e1;  /* Lightest Pink - Misty Rose */
+    --pink-bg-end: #ffebcd; /* Peach Puff - Even Lighter Pink */
+    --loading-start: #a8dadc;
+    --loading-mid: #b8f2e6;
+    --loading-end: #ffefd5;
+}
+body {
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(to bottom, var(--day-bg-start), var(--day-bg-end));
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    perspective: 1000px;
+    transition: background 0.5s ease;
+    color: var(--light);
+}
+
+.cosmic-container {
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 50px rgba(157, 78, 221, 0.3);
+    overflow: hidden;
+    background-color: rgba(10, 14, 41, 0.7);
+    text-align: center;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+}
+
+#thumbnail-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 25vh;
+    overflow: hidden;
+    background: linear-gradient(to bottom, var(--pink-bg-start), var(--pink-bg-end));
+}
+
+#sky-thumbnail {
+    width: 100%;
+    height: 100%;
+}
+
+.notification-wrapper {
+    margin-top: 20vh;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+#notification {
+    color: var(--light);
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    transform-style: preserve-3d;
+    transform: translateZ(10px);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    font-weight: bold;
+    background: linear-gradient(to right, var(--secondary), var(--primary-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#notification.angry {
+    color: var(--accent);
+    text-shadow: 0 0 20px var(--accent);
+    background: none;
+    -webkit-text-fill-color: var(--accent);
+}
+#notification.happy {
+    background: linear-gradient(to right, var(--secondary), var(--primary-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    color: var(--light);
+}
+
+#notification:hover {
+    transform: translateZ(20px);
+    text-shadow: 0 0 20px var(--accent);
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.btn-3d {
+    padding: 15px 30px;
+    background: linear-gradient(45deg, var(--primary) 0%, var(--primary-light) 100%);
+    border: none;
+    border-radius: 35px;
+    color: var(--light);
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 8px 20px rgba(110, 34, 189, 0.5);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transform-style: preserve-3d;
+    transform: translateZ(5px);
+}
+
+.btn-3d::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--secondary) 0%, var(--primary) 100%);
+    transition: width 0.5s ease;
+    z-index: -1;
+    border-radius: 35px;
+}
+
+.btn-3d:hover {
+    transform: translateZ(10px) translateY(-5px);
+    box-shadow: 0 12px 25px rgba(110, 34, 189, 0.7);
+}
+
+.btn-3d:hover::before {
+    width: 100%;
+}
+
+.btn-3d:active {
+    transform: translateZ(2px) translateY(0);
+}
+
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    background-color: var(--star-color);
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 2.5s infinite; /* Faster twinkle */
+}
+
+@keyframes twinkle {
+    0% { opacity: 0; }
+    50% { opacity: 0.7; }
+    100% { opacity: 0; }
+}
+
+.theme-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.theme-button {
+    padding: 10px 15px;
+    border: 2px solid var(--darker); /* Darker, visible border */
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--darker); /* Darker text for theme buttons */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transition for border color */
+}
+
+.theme-button:hover {
+    border-color: var(--primary); /* Hover border color */
+}
+
+.blue-theme {
+    background-color: var(--day-bg-start);
+}
+
+.pink-theme {
+    background-color: var(--pink-bg-start);
+}
+
+.night-theme {
+    background-color: var(--night-bg-start);
+    color: var(--light); /* Light text for night theme button */
+    border-color: var(--light); /* Light border for night theme button */
+}
+
+.night-theme:hover {
+    background-color: var(--night-bg-end);
+    border-color: var(--primary);
+}
+.pink-theme:hover {
+    background-color: var(--pink-bg-end);
+    border-color: var(--primary);
+}
+.blue-theme:hover {
+    background-color: var(--day-bg-end);
+    border-color: var(--primary);
+}
+
+/* Entrance Animation */
+.entrance-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--night-bg-start), var(--night-bg-end)); /* Night sky loading background */
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: opacity 1s ease;
+    overflow: hidden; /* Clip moon and clouds inside overlay */
+}
+
+.entrance-overlay .stars { /* Stars inside loading overlay */
+    animation: moveStars 10s linear infinite; /* Fast moving stars */
+}
+
+@keyframes moveStars {
+    to {
+        background-position: 100% 0;
+    }
+}
+
+
+.entrance-title {
+    font-size: 3rem;
+    background: linear-gradient(to right, var(--secondary), var(--primary-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1.5s forwards 0.5s;
+    text-align: center;
+}
+
+.entrance-subtitle {
+    font-size: 1.5rem;
+    color: var(--light);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1.5s forwards 1s;
+    text-align: center;
+}
+
+.entrance-loader {
+    width: 200px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    margin-top: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards 1.5s;
+}
+
+.entrance-loader-progress {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(to right, var(--loading-start), var(--loading-mid), var(--loading-end));
+    border-radius: 8px;
+    animation: loading 2s forwards 1.7s;
+}
+
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes loading {
+    to {
+        width: 100%;
+    }
+}
+
+/* Moon and Van Gogh Clouds */
+.moon {
+    position: fixed;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: -1; /* Moon behind content */
+    background-color: var(--star-color);
+    border-radius: 50%;
+    box-shadow: 0 0 50px var(--star-color);
+    animation: floatMoon 25s infinite ease-in-out alternate;
+}
+
+.moon.moon-top-left {
+    top: -20px; /* Adjusted position, partially off-screen */
+    left: -20px; /* Adjusted position, partially off-screen */
+    width: 70px;
+    height: 70px;
+    box-shadow: 20px 20px 50px var(--star-color); /* Shadow to appear from corner */
+}
+.moon.moon-bottom-right {
+    bottom: -30px; /* Adjusted position, partially off-screen */
+    right: -30px; /* Adjusted position, partially off-screen */
+    width: 50px;
+    height: 50px;
+    box-shadow: -20px -20px 50px var(--star-color); /* Shadow to appear from corner */
+}
+
+@keyframes floatMoon {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(10deg); }
+}
+
+
+.van-gogh-clouds {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    z-index: -2; /* Clouds behind moon and content */
+    pointer-events: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#noiseFilter)" fill="rgba(255,255,255,0.05)"/></svg>');
+    background-repeat: repeat;
+    animation: driftClouds 60s linear infinite;
+}
+
+@keyframes driftClouds {
+    from { background-position: 0 0; }
+    to { background-position: 100% 100%; }
+}
+
+/* Happy Capoo Background */
+.capoo-happy-bg {
+    background-image: url('https://i.pinimg.com/originals/55/17/aa/5517aa7627534d2427e2eda5d72b434f.gif'); /* Replace with your Capoo happy image URL */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="entrance-overlay">
+    <div class="stars" id="entrance-stars"></div>
+    <div class="van-gogh-clouds"></div>
+    <div class="entrance-title animate__animated animate__fadeInUp">Chào Phạm Tổng!</div>
+    <div class="entrance-subtitle animate__animated animate__fadeInUp animate__delay-1s">Đến giờ đi ngẩu rồi nèee</div>
+    <div class="entrance-loader">
+        <div class="entrance-loader-progress"></div>
+    </div>
+</div>
+
+<div class="stars" id="body-stars"></div>
+<div class="moon moon-top-left"></div>
+<div class="moon moon-bottom-right"></div>
+<div class="van-gogh-clouds"></div>
+
+<div class="cosmic-container">
+<div id="thumbnail-container">
+<canvas id="sky-thumbnail"></canvas>
+</div>
+<div class="notification-wrapper">
+<p id="notification">Chào Phạm tổng! Anh xin thông báo đã đến giờ bé phải đi ngẩu!! 🐼</p>
+<div class="button-group">
+<button id="goodnight-btn" class="btn-3d">vịu ơ rõ ạaa</button>
+<button id="hokkk-btn" class="btn-3d">hokkk</button>
+</div>
+</div>
+</div>
+<div class="theme-controls">
+    <button id="blueTheme" class="theme-button blue-theme">Ngày Xanh</button>
+    <button id="pinkTheme" class="theme-button pink-theme">Ngày Hồng</button>
+    <button id="nightTheme" class="theme-button night-theme">Đêm</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+    // Entrance Animation
+    document.addEventListener('DOMContentLoaded', function() {
+        createEntranceStars(); // Create stars for loading screen
+        setTimeout(() => {
+            const entranceOverlay = document.querySelector('.entrance-overlay');
+            entranceOverlay.style.opacity = '0';
+            setTimeout(() => {
+                entranceOverlay.style.display = 'none';
+            }, 1000);
+        }, 3000);
+    });
+
+    function createEntranceStars() {
+        const starsContainer = document.getElementById('entrance-stars');
+        const starsCount = 100; // Fewer stars for loading screen for performance
+        for (let i = 0; i < starsCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 2;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            star.style.left = `${posX}%`;
+            star.style.top = `${posY}%`;
+            star.style.animationDelay = `${Math.random() * 1}s`; // Shorter delay for faster animation
+            star.style.animationDuration = `${2.5 + Math.random() * 5}s`; // Shorter duration for faster animation
+            starsContainer.appendChild(star);
+        }
+    }
+
+
+    function createBodyStars() {
+        const starsContainer = document.getElementById('body-stars');
+        const starsCount = 200;
+        for (let i = 0; i < starsCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 2;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            star.style.left = `${posX}%`;
+            star.style.top = `${posY}%`;
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            star.style.animationDuration = `${2.5 + Math.random() * 5}s`; // Faster twinkle for body stars too
+            starsContainer.appendChild(star);
+        }
+    }
+    createBodyStars();
+
+    // ** Thumbnail **
+    const thumbnailScene = new THREE.Scene();
+    const thumbnailCamera = new THREE.PerspectiveCamera(75, document.getElementById('sky-thumbnail').offsetWidth / document.getElementById('sky-thumbnail').offsetHeight, 0.1, 1000);
+    thumbnailCamera.position.z = 5;
+
+    const thumbnailRenderer = new THREE.WebGLRenderer({ canvas: document.getElementById('sky-thumbnail'), alpha: true });
+    thumbnailRenderer.setSize(document.getElementById('sky-thumbnail').offsetWidth, document.getElementById('sky-thumbnail').offsetHeight);
+    thumbnailRenderer.setClearColor(0xffb6c1, 0);
+
+    // Mây hồng mờ ảo (từ code Cosmic Schedule)
+    const cloudGeometry = new THREE.PlaneGeometry(50, 50);
+    const cloudMaterial = new THREE.MeshBasicMaterial({
+        map: new THREE.TextureLoader().load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/cloud10.png'),
+        transparent: true,
+        opacity: 0.3,
+        color: 0xffffff
+    });
+    const clouds = [];
+    for (let i = 0; i < 10; i++) {
+        const cloud = new THREE.Mesh(cloudGeometry, cloudMaterial);
+        cloud.position.set(
+            (Math.random() - 0.5) * 30,
+            (Math.random() - 0.5) * 10,
+            -Math.random() * 20
+        );
+        cloud.rotation.z = Math.random() * Math.PI * 2;
+        clouds.push(cloud);
+        thumbnailScene.add(cloud);
+    }
+
+    // Sao lấp lánh (tương tự Cosmic Schedule)
+    const starGeometry = new THREE.BufferGeometry();
+    const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1, sizeAttenuation: true });
+    const starVertices = [];
+    for (let i = 0; i < 200; i++) {
+        const x = (Math.random() - 0.5) * 50;
+        const y = (Math.random() - 0.5) * 20 + 5;
+        const z = -Math.random() * 50;
+        starVertices.push(x, y, z);
+    }
+    starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+    const starsThumbnail = new THREE.Points(starGeometry, starMaterial);
+    thumbnailScene.add(starsThumbnail);
+
+    function animateThumbnail() {
+        requestAnimationFrame(animateThumbnail);
+        clouds.forEach(cloud => {
+            cloud.position.x += 0.008 + Math.sin(Date.now() * 0.0003) * 0.005;
+            if (cloud.position.x > 25) cloud.position.x = -25;
+            if (cloud.position.x < -25) cloud.position.x = 25;
+        });
+        starsThumbnail.rotation.y += 0.0005;
+        thumbnailRenderer.render(thumbnailScene, thumbnailCamera);
+    }
+    animateThumbnail();
+
+    // ** Đổi màu nền **
+    document.getElementById('blueTheme').addEventListener('click', () => {
+        document.body.style.background = 'linear-gradient(to bottom, var(--day-bg-start), var(--day-bg-end))';
+        document.body.classList.remove('capoo-happy-bg');
+        thumbnailRenderer.setClearColor(0xe0ffff, 0);
+        notificationText.classList.remove('happy'); // Reset notification style
+        notificationText.classList.remove('angry');
+         notificationText.textContent = "Chào Phạm tổng! Anh xin thông báo đã đến giờ bé phải đi ngẩu!! 🐼"; // Reset text
+    });
+
+    document.getElementById('pinkTheme').addEventListener('click', () => {
+        document.body.style.background = 'linear-gradient(to bottom, var(--pink-bg-start), var(--pink-bg-end))';
+        document.body.classList.remove('capoo-happy-bg');
+        thumbnailRenderer.setClearColor(0xffb6c1, 0);
+        notificationText.classList.remove('happy'); // Reset notification style
+        notificationText.classList.remove('angry');
+         notificationText.textContent = "Chào Phạm tổng! Anh xin thông báo đã đến giờ bé phải đi ngẩu!! 🐼"; // Reset text
+    });
+
+    document.getElementById('nightTheme').addEventListener('click', () => {
+        document.body.style.background = 'linear-gradient(to bottom, var(--night-bg-start), var(--night-bg-end))';
+        document.body.classList.remove('capoo-happy-bg');
+        thumbnailRenderer.setClearColor(0x0c0d2e, 0);
+        notificationText.classList.remove('happy'); // Reset notification style
+        notificationText.classList.remove('angry');
+         notificationText.textContent = "Chào Phạm tổng! Anh xin thông báo đã đến giờ bé phải đi ngẩu!! 🐼"; // Reset text
+    });
+
+
+    // ** Hiệu ứng 3D Hover **
+    const container = document.querySelector('.cosmic-container');
+    container.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 20;
+        const y = (e.clientY / window.innerHeight - 0.5) * 20;
+        container.style.transform = `perspective(600px) rotateX(${y}deg) rotateY(${x}deg)`;
+    });
+
+    container.addEventListener('mouseout', () => {
+        container.style.transform = `perspective(600px) rotateX(0deg) rotateY(0deg)`;
+    });
+
+    function onResize() {
+        thumbnailCamera.aspect = document.getElementById('sky-thumbnail').offsetWidth / document.getElementById('sky-thumbnail').offsetHeight;
+        thumbnailCamera.updateProjectionMatrix();
+        thumbnailRenderer.setSize(document.getElementById('sky-thumbnail').offsetWidth, document.getElementById('sky-thumbnail').offsetHeight);
+    }
+    window.addEventListener('resize', onResize);
+    onResize();
+
+    // ** Button Interactions **
+    const notificationText = document.getElementById('notification');
+    const hokkkBtn = document.getElementById('hokkk-btn');
+    const goodnightBtn = document.getElementById('goodnight-btn');
+
+    hokkkBtn.addEventListener('click', () => {
+        notificationText.textContent = "Hoii mà đi ngẩu ngoan dùm anh đi bé iuuu:<<";
+        notificationText.classList.add('angry');
+        notificationText.classList.remove('happy');
+        thumbnailRenderer.setClearColor(0xffa07a, 0);
+        document.body.style.background = 'linear-gradient(to bottom, #fa8072, #e9967a)';
+        document.body.classList.remove('capoo-happy-bg'); // Remove happy bg if angry
+    });
+
+    goodnightBtn.addEventListener('click', () => {
+        notificationText.textContent = "gútttt chọp bé iuu của anh:33";
+        notificationText.classList.remove('angry');
+        notificationText.classList.add('happy');
+        thumbnailRenderer.setClearColor(0xffb6c1, 0);
+        document.body.classList.add('capoo-happy-bg'); // Add happy Capoo background
+    });
+</script>
+</body>
+</html>
