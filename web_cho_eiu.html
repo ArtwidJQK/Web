@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -8,126 +7,162 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 <style>
 :root {
-    --primary: #6e22bd;
-    --primary-light: #9d4edd;
-    --secondary: #00b4d8;
-    --dark: #0a0e29;
-    --darker: #050914;
-    --light: #e0fbfc;
-    --accent: #ff5678;
-    --star-color: #ffffe0; /* Light Yellow for stars */
-    --night-bg-start: #121940;
-    --night-bg-end: #0c0d2e;
-    --day-bg-start: #e0ffff;   /* Lighter Light Blue Day */
-    --day-bg-end: #b0e0e6; /* Pale Turquoise */
-    --pink-bg-start: #ffe4e1;  /* Lightest Pink - Misty Rose */
-    --pink-bg-end: #ffebcd; /* Peach Puff - Even Lighter Pink */
-    --loading-start: #a8dadc;
-    --loading-mid: #b8f2e6;
-    --loading-end: #ffefd5;
+    /* Palette nâng cấp với màu gradient hiện đại */
+    --primary: #6366f1;
+    --primary-light: #818cf8;
+    --primary-dark: #4f46e5;
+    --secondary: #06b6d4;
+    --secondary-light: #22d3ee;
+    --accent: #f43f5e;
+    --accent-light: #fb7185;
+    --dark: #1e293b;
+    --darker: #0f172a;
+    --light: #f8fafc;
+    --lighter: #ffffff;
+    
+    /* Backgrounds */
+    --night-bg-start: #0f172a;
+    --night-bg-end: #1e293b;
+    --day-bg-start: #e0f2fe;
+    --day-bg-end: #bae6fd;
+    --pink-bg-start: #fce7f3;
+    --pink-bg-end: #fbcfe8;
+    
+    /* Animations & Effects */
+    --loading-start: #67e8f9;
+    --loading-mid: #a5f3fc;
+    --loading-end: #ecfeff;
 }
+
 body {
     margin: 0;
     overflow: hidden;
-    background: linear-gradient(to bottom, var(--day-bg-start), var(--day-bg-end));
+    background: linear-gradient(135deg, var(--day-bg-start), var(--day-bg-end));
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    perspective: 1000px;
-    transition: background 0.5s ease;
-    color: var(--light);
+    perspective: 1200px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--dark);
+}
+
+.main-container {
+    width: 100%;
+    max-width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .cosmic-container {
     position: relative;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 50px rgba(157, 78, 221, 0.3);
+    width: 90%;
+    max-width: 600px;
+    border-radius: 24px;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.1),
+        0 10px 20px rgba(0, 0, 0, 0.08),
+        inset 0 0 80px rgba(99, 102, 241, 0.1);
     overflow: hidden;
-    background-color: rgba(10, 14, 41, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
     padding: 40px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#thumbnail-container {
+#header-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 25vh;
+    height: 30vh;
     overflow: hidden;
-    background: linear-gradient(to bottom, var(--pink-bg-start), var(--pink-bg-end));
+    background: linear-gradient(45deg, var(--primary-light), var(--secondary-light));
+    transition: all 0.5s ease;
 }
 
-#sky-thumbnail {
+#header-canvas {
     width: 100%;
     height: 100%;
 }
 
 .notification-wrapper {
-    margin-top: 20vh;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    margin-top: 25vh;
+    position: relative;
+    z-index: 1;
 }
 
 #notification {
-    color: var(--light);
-    font-size: 2.2em;
-    margin-bottom: 20px;
+    color: var(--dark);
+    font-size: 2.4em;
+    font-weight: 700;
+    margin-bottom: 30px;
     transform-style: preserve-3d;
     transform: translateZ(10px);
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-    font-weight: bold;
-    background: linear-gradient(to right, var(--secondary), var(--primary-light));
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    background: linear-gradient(to right, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    line-height: 1.4;
 }
 
 #notification.angry {
-    color: var(--accent);
-    text-shadow: 0 0 20px var(--accent);
-    background: none;
-    -webkit-text-fill-color: var(--accent);
-}
-#notification.happy {
-    background: linear-gradient(to right, var(--secondary), var(--primary-light));
+    background: linear-gradient(to right, var(--accent), var(--accent-light));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-    color: var(--light);
+    text-shadow: 0 0 20px rgba(244, 63, 94, 0.3);
+    transform: translateZ(20px) scale(1.05);
+}
+
+#notification.happy {
+    background: linear-gradient(to right, var(--primary), var(--secondary-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    transform: translateZ(15px);
 }
 
 #notification:hover {
-    transform: translateZ(20px);
-    text-shadow: 0 0 20px var(--accent);
+    transform: translateZ(25px);
 }
 
 .button-group {
     display: flex;
     gap: 20px;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 40px;
+    transform-style: preserve-3d;
 }
 
 .btn-3d {
-    padding: 15px 30px;
+    padding: 16px 32px;
     background: linear-gradient(45deg, var(--primary) 0%, var(--primary-light) 100%);
     border: none;
-    border-radius: 35px;
+    border-radius: 50px;
     color: var(--light);
-    font-size: 1.1em;
+    font-size: 1.2em;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    box-shadow: 0 8px 20px rgba(110, 34, 189, 0.5);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 10px 25px -5px rgba(99, 102, 241, 0.5),
+        0 8px 10px -6px rgba(99, 102, 241, 0.3);
     position: relative;
     overflow: hidden;
     z-index: 1;
     transform-style: preserve-3d;
     transform: translateZ(5px);
+    letter-spacing: 0.5px;
 }
 
 .btn-3d::before {
@@ -138,14 +173,16 @@ body {
     width: 0%;
     height: 100%;
     background: linear-gradient(45deg, var(--secondary) 0%, var(--primary) 100%);
-    transition: width 0.5s ease;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: -1;
-    border-radius: 35px;
+    border-radius: 50px;
 }
 
 .btn-3d:hover {
-    transform: translateZ(10px) translateY(-5px);
-    box-shadow: 0 12px 25px rgba(110, 34, 189, 0.7);
+    transform: translateZ(15px) translateY(-5px);
+    box-shadow: 
+        0 20px 25px -5px rgba(99, 102, 241, 0.4),
+        0 10px 10px -6px rgba(99, 102, 241, 0.2);
 }
 
 .btn-3d:hover::before {
@@ -153,31 +190,7 @@ body {
 }
 
 .btn-3d:active {
-    transform: translateZ(2px) translateY(0);
-}
-
-.stars {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-}
-
-.star {
-    position: absolute;
-    background-color: var(--star-color);
-    border-radius: 50%;
-    opacity: 0;
-    animation: twinkle 2.5s infinite; /* Faster twinkle */
-}
-
-@keyframes twinkle {
-    0% { opacity: 0; }
-    50% { opacity: 0.7; }
-    100% { opacity: 0; }
+    transform: translateZ(5px) translateY(0);
 }
 
 .theme-controls {
@@ -186,21 +199,28 @@ body {
     right: 20px;
     display: flex;
     gap: 10px;
+    z-index: 100;
 }
 
 .theme-button {
-    padding: 10px 15px;
-    border: 2px solid var(--darker); /* Darker, visible border */
-    border-radius: 8px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 12px;
     cursor: pointer;
     font-size: 1em;
     font-weight: 500;
-    color: var(--darker); /* Darker text for theme buttons */
-    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transition for border color */
+    color: var(--darker);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -2px rgba(0, 0, 0, 0.05);
 }
 
 .theme-button:hover {
-    border-color: var(--primary); /* Hover border color */
+    transform: translateY(-2px);
+    box-shadow: 
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -4px rgba(0, 0, 0, 0.05);
 }
 
 .blue-theme {
@@ -213,21 +233,7 @@ body {
 
 .night-theme {
     background-color: var(--night-bg-start);
-    color: var(--light); /* Light text for night theme button */
-    border-color: var(--light); /* Light border for night theme button */
-}
-
-.night-theme:hover {
-    background-color: var(--night-bg-end);
-    border-color: var(--primary);
-}
-.pink-theme:hover {
-    background-color: var(--pink-bg-end);
-    border-color: var(--primary);
-}
-.blue-theme:hover {
-    background-color: var(--day-bg-end);
-    border-color: var(--primary);
+    color: var(--light);
 }
 
 /* Entrance Animation */
@@ -237,29 +243,18 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, var(--night-bg-start), var(--night-bg-end)); /* Night sky loading background */
+    background: linear-gradient(135deg, var(--darker), var(--dark));
     z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    transition: opacity 1s ease;
-    overflow: hidden; /* Clip moon and clouds inside overlay */
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-.entrance-overlay .stars { /* Stars inside loading overlay */
-    animation: moveStars 10s linear infinite; /* Fast moving stars */
-}
-
-@keyframes moveStars {
-    to {
-        background-position: 100% 0;
-    }
-}
-
 
 .entrance-title {
-    font-size: 3rem;
+    font-size: 3.5rem;
+    font-weight: 800;
     background: linear-gradient(to right, var(--secondary), var(--primary-light));
     -webkit-background-clip: text;
     background-clip: text;
@@ -268,22 +263,25 @@ body {
     transform: translateY(50px);
     animation: fadeInUp 1.5s forwards 0.5s;
     text-align: center;
+    letter-spacing: 1px;
 }
 
 .entrance-subtitle {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: var(--light);
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1.5s forwards 1s;
     text-align: center;
+    margin-top: 20px;
+    font-weight: 300;
 }
 
 .entrance-loader {
-    width: 200px;
+    width: 250px;
     height: 8px;
-    background: rgba(255, 255, 255, 0.2);
-    margin-top: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-top: 40px;
     border-radius: 8px;
     overflow: hidden;
     opacity: 0;
@@ -298,7 +296,66 @@ body {
     animation: loading 2s forwards 1.7s;
 }
 
+/* Particle Effects */
+.particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
 
+.particle {
+    position: absolute;
+    background: var(--primary-light);
+    border-radius: 50%;
+    opacity: 0;
+    animation: float 15s infinite ease-in-out;
+}
+
+/* Geometric Decorations */
+.geometric-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    opacity: 0.05;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    animation: rotate 30s infinite linear;
+}
+
+.square {
+    width: 100px;
+    height: 100px;
+}
+
+.circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 173px solid var(--primary-light);
+    background: transparent;
+}
+
+/* Animations */
 @keyframes fadeInUp {
     to {
         opacity: 1;
@@ -318,74 +375,99 @@ body {
     }
 }
 
-/* Moon and Van Gogh Clouds */
-.moon {
-    position: fixed;
-    opacity: 0.6;
-    pointer-events: none;
-    z-index: -1; /* Moon behind content */
-    background-color: var(--star-color);
-    border-radius: 50%;
-    box-shadow: 0 0 50px var(--star-color);
-    animation: floatMoon 25s infinite ease-in-out alternate;
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    25% { 
+        opacity: 0.3;
+    }
+    50% { 
+        transform: translateY(-80vh) translateX(40vw);
+        opacity: 0.6;
+    }
+    75% {
+        opacity: 0.3;
+    }
 }
 
-.moon.moon-top-left {
-    top: -20px; /* Adjusted position, partially off-screen */
-    left: -20px; /* Adjusted position, partially off-screen */
-    width: 70px;
-    height: 70px;
-    box-shadow: 20px 20px 50px var(--star-color); /* Shadow to appear from corner */
-}
-.moon.moon-bottom-right {
-    bottom: -30px; /* Adjusted position, partially off-screen */
-    right: -30px; /* Adjusted position, partially off-screen */
-    width: 50px;
-    height: 50px;
-    box-shadow: -20px -20px 50px var(--star-color); /* Shadow to appear from corner */
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-@keyframes floatMoon {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-15px) rotate(10deg); }
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cosmic-container {
+        width: 90%;
+        padding: 30px 20px;
+    }
+    
+    #notification {
+        font-size: 1.8em;
+    }
+    
+    .btn-3d {
+        padding: 14px 28px;
+        font-size: 1em;
+    }
+    
+    .entrance-title {
+        font-size: 2.5rem;
+    }
+    
+    .entrance-subtitle {
+        font-size: 1.4rem;
+    }
+    
+    .theme-controls {
+        flex-direction: column;
+    }
 }
 
-
-.van-gogh-clouds {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.4;
-    z-index: -2; /* Clouds behind moon and content */
-    pointer-events: none;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#noiseFilter)" fill="rgba(255,255,255,0.05)"/></svg>');
-    background-repeat: repeat;
-    animation: driftClouds 60s linear infinite;
+/* Night Mode */
+body.night-mode {
+    background: linear-gradient(135deg, var(--night-bg-start), var(--night-bg-end));
+    color: var(--light);
 }
 
-@keyframes driftClouds {
-    from { background-position: 0 0; }
-    to { background-position: 100% 100%; }
+body.night-mode .cosmic-container {
+    background-color: rgba(30, 41, 59, 0.8);
 }
 
-/* Happy Capoo Background */
-.capoo-happy-bg {
-    background-image: url('https://i.pinimg.com/originals/55/17/aa/5517aa7627534d2427e2eda5d72b434f.gif'); /* Replace with your Capoo happy image URL */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+body.night-mode #notification {
+    color: var(--light);
 }
 
+/* Pink Mode */
+body.pink-mode {
+    background: linear-gradient(135deg, var(--pink-bg-start), var(--pink-bg-end));
+}
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(241, 245, 249, 0.5);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-light);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
 </style>
 </head>
 <body>
-
+<!-- Entrance Overlay -->
 <div class="entrance-overlay">
-    <div class="stars" id="entrance-stars"></div>
-    <div class="van-gogh-clouds"></div>
     <div class="entrance-title animate__animated animate__fadeInUp">Chào Phạm Tổng!</div>
     <div class="entrance-subtitle animate__animated animate__fadeInUp animate__delay-1s">Đến giờ đi ngẩu rồi nèee</div>
     <div class="entrance-loader">
@@ -393,209 +475,239 @@ body {
     </div>
 </div>
 
-<div class="stars" id="body-stars"></div>
-<div class="moon moon-top-left"></div>
-<div class="moon moon-bottom-right"></div>
-<div class="van-gogh-clouds"></div>
+<!-- Geometric Decoration Elements -->
+<div class="geometric-shapes" id="shapes-container"></div>
 
-<div class="cosmic-container">
-<div id="thumbnail-container">
-<canvas id="sky-thumbnail"></canvas>
+<!-- Particles -->
+<div class="particles-container" id="particles-container"></div>
+
+<!-- Main Content -->
+<div class="main-container">
+    <div class="cosmic-container" id="cosmic-container">
+        <div id="header-container">
+            <canvas id="header-canvas"></canvas>
+        </div>
+        <div class="notification-wrapper">
+            <p id="notification">Chào Phạm tổng! Anh xin thông báo đã đến giờ bé phải đi ngẩu!! 🐼</p>
+            <div class="button-group">
+                <button id="goodnight-btn" class="btn-3d">vịu ơ rõ ạaa</button>
+                <button id="hokkk-btn" class="btn-3d">hokkk</button>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="notification-wrapper">
-<p id="notification">Chào Phạm tổng! Anh xin thông báo đã đến giờ bé phải đi ngẩu!! 🐼</p>
-<div class="button-group">
-<button id="goodnight-btn" class="btn-3d">vịu ơ rõ ạaa</button>
-<button id="hokkk-btn" class="btn-3d">hokkk</button>
-</div>
-</div>
-</div>
+
+<!-- Theme Controls -->
 <div class="theme-controls">
     <button id="blueTheme" class="theme-button blue-theme">Ngày Xanh</button>
     <button id="pinkTheme" class="theme-button pink-theme">Ngày Hồng</button>
     <button id="nightTheme" class="theme-button night-theme">Đêm</button>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
     // Entrance Animation
     document.addEventListener('DOMContentLoaded', function() {
-        createEntranceStars(); // Create stars for loading screen
+        createParticles();
+        createShapes();
+        setupWaveHeader();
         setTimeout(() => {
             const entranceOverlay = document.querySelector('.entrance-overlay');
             entranceOverlay.style.opacity = '0';
             setTimeout(() => {
                 entranceOverlay.style.display = 'none';
             }, 1000);
-        }, 3000);
+        }, 3500);
     });
 
-    function createEntranceStars() {
-        const starsContainer = document.getElementById('entrance-stars');
-        const starsCount = 100; // Fewer stars for loading screen for performance
-        for (let i = 0; i < starsCount; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            const size = Math.random() * 2;
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
+    // Create Floating Particles
+    function createParticles() {
+        const container = document.getElementById('particles-container');
+        const particlesCount = 20;
+        
+        for (let i = 0; i < particlesCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random size between 5px and 20px
+            const size = 5 + Math.random() * 15;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Random starting position
             const posX = Math.random() * 100;
             const posY = Math.random() * 100;
-            star.style.left = `${posX}%`;
-            star.style.top = `${posY}%`;
-            star.style.animationDelay = `${Math.random() * 1}s`; // Shorter delay for faster animation
-            star.style.animationDuration = `${2.5 + Math.random() * 5}s`; // Shorter duration for faster animation
-            starsContainer.appendChild(star);
+            particle.style.left = `${posX}%`;
+            particle.style.top = `${posY}%`;
+            
+            // Random animation delay and duration
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            particle.style.animationDuration = `${15 + Math.random() * 30}s`;
+            
+            // Random opacity
+            particle.style.opacity = 0.1 + Math.random() * 0.3;
+            
+            // Random color - use CSS variables with transparency
+            const colors = [
+                'rgba(99, 102, 241, 0.3)', // primary
+                'rgba(129, 140, 248, 0.3)', // primary-light
+                'rgba(6, 182, 212, 0.3)',   // secondary
+                'rgba(34, 211, 238, 0.3)'   // secondary-light
+            ];
+            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            container.appendChild(particle);
         }
     }
 
-
-    function createBodyStars() {
-        const starsContainer = document.getElementById('body-stars');
-        const starsCount = 200;
-        for (let i = 0; i < starsCount; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            const size = Math.random() * 2;
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
+    // Create Geometric Shapes
+    function createShapes() {
+        const container = document.getElementById('shapes-container');
+        const shapesCount = 8;
+        const shapeTypes = ['square', 'circle', 'triangle'];
+        
+        for (let i = 0; i < shapesCount; i++) {
+            const shape = document.createElement('div');
+            const shapeType = shapeTypes[Math.floor(Math.random() * shapeTypes.length)];
+            shape.classList.add('shape', shapeType);
+            
+            // Random position
             const posX = Math.random() * 100;
             const posY = Math.random() * 100;
-            star.style.left = `${posX}%`;
-            star.style.top = `${posY}%`;
-            star.style.animationDelay = `${Math.random() * 5}s`;
-            star.style.animationDuration = `${2.5 + Math.random() * 5}s`; // Faster twinkle for body stars too
-            starsContainer.appendChild(star);
+            shape.style.left = `${posX}%`;
+            shape.style.top = `${posY}%`;
+            
+            // Random rotation
+            shape.style.transform = `rotate(${Math.random() * 360}deg)`;
+            
+            // Random animation delay and duration
+            shape.style.animationDelay = `${Math.random() * 5}s`;
+            shape.style.animationDuration = `${30 + Math.random() * 60}s`;
+            
+            container.appendChild(shape);
         }
     }
-    createBodyStars();
 
-    // ** Thumbnail **
-    const thumbnailScene = new THREE.Scene();
-    const thumbnailCamera = new THREE.PerspectiveCamera(75, document.getElementById('sky-thumbnail').offsetWidth / document.getElementById('sky-thumbnail').offsetHeight, 0.1, 1000);
-    thumbnailCamera.position.z = 5;
-
-    const thumbnailRenderer = new THREE.WebGLRenderer({ canvas: document.getElementById('sky-thumbnail'), alpha: true });
-    thumbnailRenderer.setSize(document.getElementById('sky-thumbnail').offsetWidth, document.getElementById('sky-thumbnail').offsetHeight);
-    thumbnailRenderer.setClearColor(0xffb6c1, 0);
-
-    // Mây hồng mờ ảo (từ code Cosmic Schedule)
-    const cloudGeometry = new THREE.PlaneGeometry(50, 50);
-    const cloudMaterial = new THREE.MeshBasicMaterial({
-        map: new THREE.TextureLoader().load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/cloud10.png'),
-        transparent: true,
-        opacity: 0.3,
-        color: 0xffffff
-    });
-    const clouds = [];
-    for (let i = 0; i < 10; i++) {
-        const cloud = new THREE.Mesh(cloudGeometry, cloudMaterial);
-        cloud.position.set(
-            (Math.random() - 0.5) * 30,
-            (Math.random() - 0.5) * 10,
-            -Math.random() * 20
-        );
-        cloud.rotation.z = Math.random() * Math.PI * 2;
-        clouds.push(cloud);
-        thumbnailScene.add(cloud);
-    }
-
-    // Sao lấp lánh (tương tự Cosmic Schedule)
-    const starGeometry = new THREE.BufferGeometry();
-    const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1, sizeAttenuation: true });
-    const starVertices = [];
-    for (let i = 0; i < 200; i++) {
-        const x = (Math.random() - 0.5) * 50;
-        const y = (Math.random() - 0.5) * 20 + 5;
-        const z = -Math.random() * 50;
-        starVertices.push(x, y, z);
-    }
-    starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-    const starsThumbnail = new THREE.Points(starGeometry, starMaterial);
-    thumbnailScene.add(starsThumbnail);
-
-    function animateThumbnail() {
-        requestAnimationFrame(animateThumbnail);
-        clouds.forEach(cloud => {
-            cloud.position.x += 0.008 + Math.sin(Date.now() * 0.0003) * 0.005;
-            if (cloud.position.x > 25) cloud.position.x = -25;
-            if (cloud.position.x < -25) cloud.position.x = 25;
+    // Wave Header with Canvas
+    function setupWaveHeader() {
+        const canvas = document.getElementById('header-canvas');
+        const ctx = canvas.getContext('2d');
+        const headerContainer = document.getElementById('header-container');
+        
+        // Set canvas dimensions
+        canvas.width = headerContainer.offsetWidth;
+        canvas.height = headerContainer.offsetHeight;
+        
+        // Animation variables
+        let time = 0;
+        const waveColors = ['#818cf8', '#6366f1', '#22d3ee', '#06b6d4'];
+        
+        function drawWaves() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw multiple wave layers
+            for (let i = 0; i < waveColors.length; i++) {
+                ctx.fillStyle = waveColors[i];
+                ctx.beginPath();
+                
+                // Wave parameters
+                const amplitude = 15 + i * 5;
+                const period = 200 + i * 50;
+                const verticalOffset = 50 + i * 30;
+                
+                // Start drawing
+                ctx.moveTo(0, canvas.height);
+                
+                // Draw the wave
+                for (let x = 0; x <= canvas.width; x += 5) {
+                    const y = verticalOffset + 
+                              amplitude * Math.sin((x / period) * 2 * Math.PI + time + i * 0.5);
+                    ctx.lineTo(x, y);
+                }
+                
+                // Complete the shape
+                ctx.lineTo(canvas.width, canvas.height);
+                ctx.lineTo(0, canvas.height);
+                ctx.closePath();
+                ctx.fill();
+            }
+            
+            // Update time for animation
+            time += 0.01;
+            requestAnimationFrame(drawWaves);
+        }
+        
+        // Start wave animation
+        drawWaves();
+        
+        // Handle resize
+        window.addEventListener('resize', function() {
+            canvas.width = headerContainer.offsetWidth;
+            canvas.height = headerContainer.offsetHeight;
         });
-        starsThumbnail.rotation.y += 0.0005;
-        thumbnailRenderer.render(thumbnailScene, thumbnailCamera);
     }
-    animateThumbnail();
 
-    // ** Đổi màu nền **
+    // 3D Effect for Container
+    document.getElementById('cosmic-container').addEventListener('mousemove', function(e) {
+        const container = this;
+        const containerRect = container.getBoundingClientRect();
+        const containerCenterX = containerRect.left + containerRect.width / 2;
+        const containerCenterY = containerRect.top + containerRect.height / 2;
+        
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+        
+        const percentX = (mouseX - containerCenterX) / (containerRect.width / 2);
+        const percentY = -((mouseY - containerCenterY) / (containerRect.height / 2));
+        
+        const maxRotation = 5; // degrees
+        
+        container.style.transform = `perspective(1200px) rotateY(${percentX * maxRotation}deg) rotateX(${percentY * maxRotation}deg)`;
+    });
+
+    document.getElementById('cosmic-container').addEventListener('mouseleave', function() {
+        this.style.transform = 'perspective(1200px) rotateY(0deg) rotateX(0deg)';
+    });
+
+    // Theme Switching
     document.getElementById('blueTheme').addEventListener('click', () => {
-        document.body.style.background = 'linear-gradient(to bottom, var(--day-bg-start), var(--day-bg-end))';
-        document.body.classList.remove('capoo-happy-bg');
-        thumbnailRenderer.setClearColor(0xe0ffff, 0);
-        notificationText.classList.remove('happy'); // Reset notification style
-        notificationText.classList.remove('angry');
-         notificationText.textContent = "Chào Phạm tổng! Anh xin thông báo đã đến giờ bé phải đi ngẩu!! 🐼"; // Reset text
+        document.body.className = 'blue-mode';
+        updateNotificationStyle('default');
     });
 
     document.getElementById('pinkTheme').addEventListener('click', () => {
-        document.body.style.background = 'linear-gradient(to bottom, var(--pink-bg-start), var(--pink-bg-end))';
-        document.body.classList.remove('capoo-happy-bg');
-        thumbnailRenderer.setClearColor(0xffb6c1, 0);
-        notificationText.classList.remove('happy'); // Reset notification style
-        notificationText.classList.remove('angry');
-         notificationText.textContent = "Chào Phạm tổng! Anh xin thông báo đã đến giờ bé phải đi ngẩu!! 🐼"; // Reset text
+        document.body.className = 'pink-mode';
+        updateNotificationStyle('default');
     });
 
     document.getElementById('nightTheme').addEventListener('click', () => {
-        document.body.style.background = 'linear-gradient(to bottom, var(--night-bg-start), var(--night-bg-end))';
-        document.body.classList.remove('capoo-happy-bg');
-        thumbnailRenderer.setClearColor(0x0c0d2e, 0);
-        notificationText.classList.remove('happy'); // Reset notification style
-        notificationText.classList.remove('angry');
-         notificationText.textContent = "Chào Phạm tổng! Anh xin thông báo đã đến giờ bé phải đi ngẩu!! 🐼"; // Reset text
+        document.body.className = 'night-mode';
+        updateNotificationStyle('default');
     });
 
-
-    // ** Hiệu ứng 3D Hover **
-    const container = document.querySelector('.cosmic-container');
-    container.addEventListener('mousemove', (e) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 20;
-        const y = (e.clientY / window.innerHeight - 0.5) * 20;
-        container.style.transform = `perspective(600px) rotateX(${y}deg) rotateY(${x}deg)`;
-    });
-
-    container.addEventListener('mouseout', () => {
-        container.style.transform = `perspective(600px) rotateX(0deg) rotateY(0deg)`;
-    });
-
-    function onResize() {
-        thumbnailCamera.aspect = document.getElementById('sky-thumbnail').offsetWidth / document.getElementById('sky-thumbnail').offsetHeight;
-        thumbnailCamera.updateProjectionMatrix();
-        thumbnailRenderer.setSize(document.getElementById('sky-thumbnail').offsetWidth, document.getElementById('sky-thumbnail').offsetHeight);
-    }
-    window.addEventListener('resize', onResize);
-    onResize();
-
-    // ** Button Interactions **
+    // Button Interactions
     const notificationText = document.getElementById('notification');
     const hokkkBtn = document.getElementById('hokkk-btn');
     const goodnightBtn = document.getElementById('goodnight-btn');
 
     hokkkBtn.addEventListener('click', () => {
         notificationText.textContent = "Hoii mà đi ngẩu ngoan dùm anh đi bé iuuu:<<";
-        notificationText.classList.add('angry');
-        notificationText.classList.remove('happy');
-        thumbnailRenderer.setClearColor(0xffa07a, 0);
-        document.body.style.background = 'linear-gradient(to bottom, #fa8072, #e9967a)';
-        document.body.classList.remove('capoo-happy-bg'); // Remove happy bg if angry
+        updateNotificationStyle('angry');
     });
 
     goodnightBtn.addEventListener('click', () => {
         notificationText.textContent = "gútttt chọp bé iuu của anh:33";
-        notificationText.classList.remove('angry');
-        notificationText.classList.add('happy');
-        thumbnailRenderer.setClearColor(0xffb6c1, 0);
-        document.body.classList.add('capoo-happy-bg'); // Add happy Capoo background
+        updateNotificationStyle('happy');
     });
+
+    function updateNotificationStyle(style) {
+        notificationText.classList.remove('angry', 'happy');
+        
+        if (style === 'angry') {
+            notificationText.classList.add('angry');
+        } else if (style === 'happy') {
+            notificationText.classList.add('happy');
+        }
+    }
 </script>
 </body>
 </html>
