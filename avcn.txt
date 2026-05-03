@@ -1,0 +1,663 @@
+Choose the right word which matches with its definition. 
+
+A simplified version which is cheaper to buy.
+trial version 				C. shareware		
+professional version 			D. home-use version 
+Software which is in the public domain. Anybody can use it without paying.
+A. trial version				C. professional version
+B. shareware 				D. freeware
+The full version with all the features.
+A. trial version				C. shareware
+B. freeware 				D. professional version
+You can try it for a while for free. Then if you want to keep using it, you are expected to pay a small fee to the writer.	
+A. shareware				C. professional version
+B. home-use version 			D. freeware
+You can use it for free for a while (often a month). When the trial period finishes, you have to pay, or the program will de-activate.
+A. trial version				C. home-use version
+B. freeware 				D. professional version
+
+Choose the security solution to its purpose. 
+
+………. prevents damage that viruses might cause.
+username, password and biometric scanning 	C. antivirus software
+authentication					D. encryption
+………. checks the user is allowed to use system.
+A. encryption			C. username, password and biometric scanning
+B. a firewall 			D. antivirus software
+………. make sure only authorized people access the network.
+A. antivirus software				C. encryption	
+B. authentication					D. a firewall 
+………. blocks unauthorized access codes.
+A. username, password and biometric scanning	C. a firewall	
+B. encryption 					D. antivirus software
+………. protects the system from public access.
+A. username, password and biometric scanning	C. encryption
+B. a firewall					D. authentication
+
+1.D 2.D 3.D 4.A 5.A 6.C 7.C 8.B 9.B 10.B
+
+
+
+
+
+
+
+Choose the right word which matches with its definition. 
+
+1. The study of website traffic
+A. website analytics 	B. traffic 		C. page optimization 	D. visitor map 
+2. Invisible information on a website
+A. meta tag 		B. page optimization 	C. website analytics	D. traffic
+3. The movement and actions of visitors to your site
+A. traffic 			B. visitor map		C. website analytics 	D. meta tag
+4. Increasing the number of visitors to your site
+A. visitor map 		B. page optimization 	C.  meta tag		D. traffic
+5. Information about where your visitors are from
+A. website analytics 	B. visitor map 		C. page optimization	D. meta tag
+6. Software that sends information about the use of a computer system.
+A. trojan 			B. spyware 		C. adware 		D. hacker
+7. Someone who tries to break into a computer system.
+A. spyware 			B. adware 		C. hacker 		D. trojan
+8. Software that automatically plays commercials on a computer.
+A. hacker 			B. antivirus software   C. adware 		D. spyware 
+9. A program which is usually free but contains a virus.
+A. spyware 			B. hacker 		C. antivirus software  D. trojan
+10. This software prevents damage that viruses might cause.
+A. adware 			B. trojan 		C. spyware 		D. antivirus software   
+ 
+1.A 2.A 3.A 4.B 5.B 6.B 7.C 8.C 9.D 10.D
+
+Choose the company department which matches with the type of data it works with. 
+
+1. information about Help Desk, support calls, manuals, problem reports
+A. Technical support 				C. Production
+B. Finance 						D. Human resources
+2. data about customers, satisfactions surveys, promotions
+A. Customer relations 				C. Human resources
+B. Technical support 				D. Production 
+3. data about profits, tax, loans, shares and cash
+A. Finance 						C. Technical support
+B. Customer relations 				D. Production
+4. data about employees, training, recruitment needs
+A. Finance 						C. Customer relations
+B. Human resources 				D. Technical support
+5. data about product specification, details and design
+A. Customer relations 				C. Finance
+B. Production 					D. Human resources
+
+Choose the tool which matches with its use.
+
+6. drives screws and bolts into six-sided sockets
+A. wire strippers  	B. a hex key 		C. tweezers		D. a screwdriver
+7. hold objects and cut or bend tough materials
+A. a screwdriver 	B. tweezers		C. pliers 		D. a hex key
+8. tightens and removes screws
+A.  a hex key 	B. pliers 		C. a screwdriver 	D. tweezers
+
+9. hold small objects
+A. pliers 		B. a hex key 		C. wire strippers  	D. tweezers
+10. remove insulation 
+A. pliers 		B. a screwdriver 	C. tweezers		D. wire strippers 
+
+1.A 2.A 3.A 4.B 5.B 6.B 7.C 8.C 9.D 10.D 
+
+1. User profile is _____.
+A. a collection of settings and information associated with a user
+B. an effort to get unauthorized access to a computer			
+C. a way to make sure that only authorized people access the network			
+D. a hardware device that allows wireless devices to connect to the network
+2. Malware attack is _____.    
+A. an effort to get unauthorized access to a computer			
+B. a collection of settings and information associated with a user			
+C. a hardware device that allows wireless devices to connect to the network		
+D. a way to make sure that only authorized people access the network
+3. Browser hijacker is _____.  
+A. software that replaces the user’s search engine with its own 
+B. a collection of settings and information associated with a user			
+C. software that replaces the user’s search engine with its own 
+D. a way to make sure that only authorized people access the network
+4. Biometric scanning is _____.
+A. software that replaces the user’s search engine with its own 
+B. a way to make sure that only authorized people access the network		
+C. an effort to get unauthorized access to a computer 			
+D a hardware device that allows wireless devices to connect to the network
+5. A wireless access point is _____.
+A. software that replaces the user’s search engine with its own			
+B. a hardware device that allows wireless devices to connect to the network 
+C. an effort to get unauthorized access to a computer					
+D. a collection of settings and information associated with a user			
+6. A router is _____.
+A. sends the digital signal further on in the network  		
+B. connects networks that use the same protocol			
+C. channels incoming data but maintains the bandwidth speed			
+D. modulates and demodulates the data into digital or analog signal
+7. A gateway is _____.  
+A. channels incoming data but maintains the bandwidth speed 
+B. is an entrance to another network			
+C. is an entrance to another network 			
+D. modulates and demodulates the data into digital or analog signal	
+8. A modem is _____.
+A. sends the digital signal further on in the network 
+B. connects networks that use the same protocol			
+C. modulates and demodulates the data into digital or analog signal			
+D. is an entrance to another network
+9. A switch is _____.
+A. connects networks that use the same protocol			
+B. sends the digital signal further on in the network			
+C. modulates and demodulates the data into digital or analog signal			
+D. channels incoming data but maintains the bandwidth speed
+10. A repeater is _____.
+A. is an entrance to another network	 			
+B. connects networks that use the same protocol					
+C. channels incoming data but maintains the bandwidth speed			
+D. sends the digital signal further on in the network
+
+1A 2.A 3.A 4.B 5.B 6.B 7.C 8.C 9.D 10.D
+
+A. Match the words with their definitions. 
+
+1. A person whose job is to plan and design the network.
+A. network architect				C. network administrator			B. system analyst				D. programmer
+2. Someone whose job is to study a company’s computer needs and provide them with suitable software and equipment.  
+A. network architect				C. network administrator			B. system analyst    				D. IT support officer
+3. Someone whose job is to write digital code (sets of instructions for computers).
+A. IT support officer				C. programmer	
+B. network administrator			D. network architect
+4. A person whose job is to make sure all of the computers work properly.
+A. IT support officer				C. system analyst		
+B. network architect				D. programmer
+     5. A person is responsible for firewalls, security levels, wireless connection, usernames,     passwords. 
+A. IT support officer				C. programmer		
+B. network administrator			D. system analyst
+6. Arrange and systemize the data.
+A. data collection   	B. data validation   	C. data coding   	D. data sorting
+7. Gather the raw data which you want to process. 
+A. data coding   	B. data tabulation   	C. data validation   	D. data collection   
+8. Clean the data and double-check for faults and inconsistences.
+A. data collection   	B. data tabulation   	C. data sorting		D. data validation   
+9. Create categories to organize the data into relevant groups.
+A. data tabulation   	B. data collection   	C. data coding   	D. data sorting
+10. Arrange the data into table format so that it can be analyzed.
+A. data validation   	B. data sorting		C. data coding   	D. data tabulation   
+
+1A 2. B 3. C 4. A 5. B 6. C 7. D 8. D 9. D 10. D
+
+A. Choose the right answer to make a correct definition.
+
+1. ………. is a program used for displaying web pages.
+A. Ripper		B. Web browser	C. Host		D. Inbox
+2. ………. is a computer used to provide data and services to other computers.
+A. Newbie		B. Host		C. Web browser	D. Ripper 
+3. ………. is the location where emails are kept when they are received.
+A. Web browser	B. Inbox		C. Host		D. Newbie 
+4. ………. is a piece of software used to extract files from a CD/ DVD and convert them to other formats.
+A. Ripper		B. Web browser	C. Inbox		D. Newbie 
+5. ………. is somebody who is new to an activity such as using a PC or the Internet.
+A. Newbie		B. Inbox		C. Ripper		D. Host
+
+Choose the word that matches with their usage. 
+
+6. ………. are used to remove insulation. 
+A. Wire strippers				C. The diagnostic software		
+B. A system diagnostic card		D. A multimetre
+7. ………. is used to measure electrical properties.
+A. A system diagnostic card		C. A multimetre
+B. The cable tester				D. Wire strippers
+8. ………. is used to test the system operation as it boots up.
+A. A multimetre				C. A system diagnostic card	
+B. The cable tester				D. The diagnostic software
+9. ………. is used to identify problems in computer hardware.
+A. The cable tester				C. Wire strippers
+B. A multimetre				D. The diagnostic software
+10. ………. is used to check electrical connections in wired devices.
+A. The diagnostic software		C. Wire strippers	
+B. A system diagnostic card		D. The cable tester
+
+1. B 2. B 3. B 4. A 5. A 6. A 7. C 8. C 9. D 10. D
+
+A. Choose the right word which matches with its definition.
+
+1. A standard network protocol used to copy a file from one host to another.
+A. HTML-Hypertext Markup Language                   
+B. IP-Internet Protocol                                 
+C. HTTP-Hypertext Transfer Protocol           
+D. FTP-File Transfer Protocol                        
+2. A type of language used to describe the structure of a web page.
+A. WLAN-Wireless Area Local Network             
+B. FTP-File Transfer Protocol
+C. HTTP-Hypertext Transfer Protocol           
+D. HTML-Hypertext Markup Language   
+                          
+3. The method for connecting computers so that they can exchange information.
+A. WLAN-Wireless Area Local Network             
+B.  FTP-File Transfer Protocol                               
+C. HTML-Hypertext Markup Language      
+D. IP-Internet Protocol                        
+4. A type of local area network that uses high-frequency radio wires to communicate between nodes.
+A. WLAN-Wireless Area Local Network             
+B. IP-Internet Protocol                                 
+C. HTTP-Hypertext Transfer Protocol           
+D. HTML-Hypertext Markup Language      
+5. A set of instructions made by a computer program that allow your computer to connect to 
+an internet document.
+A. HTTP-Hypertext Transfer Protocol             
+B. IP-Internet Protocol                                 
+C. WLAN-Wireless Area Local Network          
+D. FTP-File Transfer Protocol     
+6. to play computer games
+A. Microphone 	B. Joystick 		C. Digital camera 	D. Barcode reader
+7. to read price labels in a shop
+A. Light pen 		B. Barcode reader 	C. Digital camera 	D. Microphone
+8. to input voice commands and dictate text
+A. Joystick 		B. Light pen 		C. Microphone 	D. Barcode reader
+9. to draw pictures or select menu options directly on the screen.
+A. Barcode reader 	B. Microphone 	C. Light pen 		D. Joystick
+10. to take and store pictures and then download them to a computer.
+A. Joystick 		B. Light pen 		C. Digital camera 	D. Digital camera
+                   
+1. D 2. D 3. D 	4. A 5. A 6. B 7. B 8. C 9. C 10. C
+
+
+B. Complete the sentences with the best answers. 
+
+11. A network architect .......... the network. 
+A. designs 		B. keeps 		C. maintain		D. navigate
+12. When the customer .......... the order, our server will confirm availability.
+A. places 		B. makes 		C. gets			D. does
+13. I .......... my computer off yesterday and today I can’t turn it on again.
+A. checked     		B. disconnected 	C. plugged      		D. switched     
+14. I checked all the cable connections – they were all .......... in correctly.
+A. worked		B. disconnected	C. switched    		D. plugged 
+15. My job is to .......... any incidents immediately to the IT manager.
+A. report 		B. follow 		C. talk 			D. present
+
+16. You pass through a(n) .......... to enter another network. 
+A. gateway 		B. bridge		C. firewall 		D. router
+17. Some websites are easier to .......... than others.
+A. do			B. buy			C. navigate		D. retrieve
+18. You must have a(n) .......... to stop cyber attacks.
+A. spywware		B. password		C. firewall  		D. encryption
+19. We’ve got many customers who .......... for our products online.
+A. get 			B. shop 		C. see 			D. buy
+20. If the customer doesn’t have the money to pay, the order will be .......... . 
+A. delivered 		B. rejected 		C. checked 	 	D. refunded
+
+11.A 12.A 13.D 14.D 15.A 16.A 17.C 18.C 19.B 20.B
+
+You must discuss with the customer their …… for the site to find out what they want.
+questions		B. requirements	C. plans		D. information
+The flight website is very…… . It gives you details of thousands of flights.
+interesting		B. informative		C. colorful		D. excellent
+My computer …… and I’ve lost all my work!
+‘s failed		B. ’s crashed		C. ‘s stopped		D. ‘s burned 
+I want to get a new laptop. Could you …… a good one?
+process			B. recommend		C. offer		D. promote
+A commercial website …… products or services.
+promotes 		B. gets			C. sells			D. presents
+Did you …… for the product with a credit card?
+buy			B. spend		C. pay			D. select
+These websites …… environmentally friendly shopping.
+design			B. set up		C. promote		D.  solve
+You need to …… the data from the database.
+store			B. enter		C. retrieve		D. analyze
+ HDMI …… for High Definition Multimedia Interface.
+spells			B. writes		C. means 		D. stands 
+20. Software which has been illegally copied is …… .
+      A. unreal			B. stolen		C. fake			D. pirated 
+
+11.B 12.B 13.B 14.C 15.C 16.C 17.A 18.A 19.D 20.D
+
+11. An IT support officer ………. sure all the computers work properly.
+A. makes			B. gets			C. takes		D. do
+12. Please let me know which workshop you’d like to ………. next month.
+A. take	 		B. attend 		C. do			D. visit
+13. Software which has been bought from the company that produced it is ………. .
+       A. real			B. justified		C. licensed		D. legal
+14. On Spanishforall.com I can ………. my Spanish.
+A. practice 		B. do			C. listen		D. see
+15. Software for use by businesses is ………. .
+A. commercial		B. business-like	C. busy		D. financial
+16. Do we need to………. a lot of money on security?
+A. spend			B. pay 			C. charge 		D. buy
+17. We use ………. to block unauthorized access to a computer.
+A. encryption		B. antivirus program	C. spyware 	 	D. firewal 
+18. First, the customers will type in all their details to ………. . 
+A. pay 			B. identify		C. register		D. buy
+19. Will customers be able to ………. an order then?
+A. offer 			B. write		C. place 		D. give
+20. Software for use at home is ………. .
+A. for household use				C. for home use
+B. for house use					D. for family use
+
+11.A 12.B 13.C 14.A 15.A 16.A 17.A 18.C 19.C 20.C
+
+11. You must put the items in your  _____ cart.
+A. shopping 		B. buying 		C. products 		D. goods
+12. You can pay for the _____ with a credit or debit card.
+A. transaction 		B. decision 		C. choice 		D. preference
+13. We need product information and promotions to _____ customers. 
+A. attract			B. improve		C. meet		D. choose
+14. You need firewalls to help stop cyber _____. 
+A. leaks 			B. attacks 		C. adware		D. spyware
+15. His screen has _____ blank. He has not been able to access any of his files this morning.
+A.viewed 			B. gone 		C. come 		D. seen 
+16. How much does the new laptop _____? 
+A. expensive		B. cost			C. is 			D. price
+17. A network administrator _____ passwords.
+A. solves			B. makes		C. sets			D. builds
+18. Two people in my department would like to _____ in a workshop.
+A. visit			B. attend 		C. participate 		D. go
+19. If the computer crashes, you can try pressing the _____ button.	
+A. recommence		B. play			C. replay		D. restart	 
+20. Did you _____ the order for the new software yesterday?
+A. offer 			B. write		C. give			D. place 
+
+11.A 12.A 13.A 14.B 15.B 16.B 17.C 18.C 19.D 20.D
+
+I’m a data .......... – I process data.
+A. analyst		B. developer		C. architect		D. supporter
+Video and graphic cards are examples of .......... cards.
+A. expansion		B. insertion		C. extension		D. processing
+Have you .......... the CD into the correct drive?
+A. inserted		B. burnt		C. set up		D. run
+Our website needs to .......... a friendly and efficient service.
+A. do		B. promote			C. share		D. make
+
+It was too late to .......... most of the files. It destroyed everything on the hard drive.
+A. take 		B. recover 		C. retrieve 		D. store
+Your software isn’t .......... with this computer.
+A. efficient		B. compatible		C. easy			D. complex
+The power cable was .......... by mistake. That’s why the machine didn’t work.
+A. disappeared		B. displayed	C. disconnected		D. distributed
+I need to .......... the new software on your computer. It’ll take half an hour.
+A. transfer		B. insert		C. install		D. connect
+The user wants a website that is easy to .......... .
+offer		B. present		C. navigate		D. design 
+ A software made specially for one company is ..........
+A. only one		B. unique		C. one-off		D. tailor-made 
+
+11. A 12. A 13. A 14. B 15. B 16. B  17. C  18. C 19. C 20. D 
+
+B. Complete the sentences with the best answers. 
+
+11. It .......... all day to repair the system, so we haven’t had any online orders today.
+took		B. had			C. made		D. did
+12. We won’t .......... them for purchases that are delayed.
+charge		B. cost  		C. get			D. buy
+13. I .......... the problem to my supervisor when I discovered it.
+transferred 	B. reported 		C. talk 			D. present
+14. When you .......... a document, it's sent to the recycle bin.
+      A. destroy		B. delete		C. erase		D. move
+15. ‘FTP’ .......... for File Transfer Protocol. 
+means 		B. is 			C. stands 		D. writes
+16. Software for use by children and schools is .......... .
+A. learning		B. teaching		C. educational		D. searching 
+17. The battery isn't completely flat, but it’s very .......... .
+A. down		B. short		C. low			D. weak
+18. In three or four years, my new computer will probably be .......... .
+A. old fashioned	B. behind the times	C. up-to-date		D. obsolete 
+19. The X19 notebook computer features a very .......... design.
+A. heavy		B. little		C. small		D. compact 
+20. I don't think this printer is .......... with my computer.
+      A. connectible	B. suitable		C. disconnected	 D. compatible 
+
+11. A 12. A 13. B 14. B 15. C 16. C  17. C  18. D 19. D 20. D
+
+11. Keeping files on a computer database is a .......... solution.
+A. new-tech		B. now-tech		C. high-tech		D. modern-tech
+12. My pay-as-you-go account .......... is about £7.
+A. balance 		B. level		C. amount		D. sum
+13. My average call .......... is about two minutes.
+A. time			B. length		C. duration		D. period 
+14. We're a long way from the nearest .......... .
+A. broadcaster		B. antenna		C. transmitter	D. station
+15. With a wireless router, you can .......... your broadband connection with other users.
+A. divide			B. combine		C. share		D. transfer
+16. Turn on your computer. It will usually take a few minutes to .......... .
+A. boot itself 		B. boot up		C. get booted		D. boot
+17. If I leave my computer on without using it, after a while it goes into .......... mode.
+A. stand down		B. standby		C. waiting		D. dark
+18. The projector isn't working because it isn't .......... .
+A. plugged		B. plugged in		C. plugged into	D. plugged on
+19. Which network has the lowest ..........?
+A. call fee		B. call costs		C. call expenses	D. call charges 
+20. On my computer, I have a picture of my cat as the .......... .
+A. desktop image		B. desktop picture	C. desktop scene	D. desktop background
+
+11. A 12. A 13. C 14. C 15. C 16. B  17. B  18. B 19. D 20. D
+
+11. Oh dear. I pressed the .......... button.
+A. wrong			B. incorrect		C. false		D. inexact
+12. Keeping files on paper is .......... solution.
+A. a low-tech		B. a past-tech		C. an old-tech		D. a slow-tech 
+13. The screen on my laptop isn't very .......... .
+A. light			B. bright		C. white		D. clear 
+14. You can't use a mobile in a cave because there's no .......... .
+A. connection		B. network		C. power		D. sign
+15. When you send a text message, the .......... function can help you write it more quickly.
+A. texting predictor	B. predictive text	C. text predictor	D. predicting text
+16. In Windows, the icon is just a .......... to the application. If you delete the icon, the application will still be on your computer.
+A. connector		B. link			C. shortcut		D. image
+17. A personal website is a website .......... by an individual for personal use.
+A. set up			B. processed		C. maintained		D. made
+18. Deleted documents stay in the recycle bin until you .......... it.
+A. wash			B. clean		C. empty		D. remove
+19. When you pay by credit card, your card is .......... .	
+A. swooped		B. swept		C. swapped		D. swiped 
+20. My job is to .......... any incidents immediately to the IT manager.
+A. present			B. follow 		C. talk 			D. report 
+
+11. A 12. A 13. B 14. B 15. B 16. C  17. C  18. C 19. D 20. D
+
+
+Part II: GRAMMAR 
+Choose the best answer to complete each sentence. 
+
+21. I ……. lose my work because I haven’t backed up my files.
+A. have to		B. might 		C. must		D. should
+22. Employees ……. to eat lunch at their desks.
+A. shouldn’t 		B. aren’t allowed	C. mustn’t		D. won’t
+23. The second site ……. a lot of features.
+A. is 			B. are 			C. has 			D. have
+24. We need to get more people ……. to the website, so we are improving it.
+A. are coming 	B. come 		C. to come 		D. will come  
+25. John: ………. traffic does each site get?			
+      Tom: It gets a lot of visitors.
+A. Why     		B. How many     	C. How much     	D. What
+26. John: ………. do you use CNN for?			
+      Tom: Finding out about world news.
+What     		B. When 		C. Which 		D. Why
+27. You can draw directly ……. a computer screen with a pixel pen.	
+A. onto		B. into			C. at			D. in
+28. The body text is divided ……. two columns. 
+A. into		B. with			C.in			D. on
+29. Making changes to a text is called ……. .
+A. edition		B. edit			C. editor		D. editing
+30. …….  normal text to italic, first you must select the text you want to format.
+A. For change	B. To changing 	C. Changing		D. To change
+31. In word processing, to put things ……. alphabetical order is to sort.
+A. onto		B. on			C.  to			D. into	
+32. You can give your presentation ……. the internet as an online broadcast.
+A. on			B. over			C. in			D. with
+33. There ........... be a problem with the server. I’m not sure.
+need		B. may			C. should		D. can
+34. You access a database ……. a password and get information.                                     
+A. by			B. in			C. with			D. on    
+35. ADSL is more commonly known .......... broadband. 
+A. for 			B. with			C. as			D. to
+
+21.B 22.B 23.C 24.C 25.C 26.A 27.A 28.A 29.D 30.D 31.D 32.B 33.B 34.C 35.C
+
+‘Why …… we run the system check now?’ ‘That’s a good idea.’
+A. aren’t			B. don’t		C. haven’t		D. won’t
+Sorry I can’t help. I haven’t got …… knowledge about this subject.
+A. a lot			B. much		C. many		D. a little
+When we have the new security system, hackers …… be able to get into the network.
+A. aren’t			B. won’t		C. don’t		D. can’t
+A multimeter …… to measure electrical properties.
+A. is used			B. used		C. uses			D. is using
+Unauthorised personnel aren’t …… to access the data.
+A. allowed			B allowing		C. to allow		D. allow
+Randa …… me ten emails yesterday.
+sent			B. has sent		C. sends		D. is sending
+What about …… the cables? Have you done that?
+check			B. to check		C. checking		D. checked
+We haven’t finished …… we had a problem with the software.
+so			B. but			C. because		D. or
+We gave the presentation at 7.00 p.m. …… that we all went out to dinner.
+Then			B. Finally,		C. After		D. Next 
+After that you can develop a website …… .
+A. specificity		B. specific 		C. specify 		D. specification
+I don’t know how to access the information I need.  …… isn’t anything on the screen at the moment.
+This 			B. They		C. It			D. There 
+If 3.30 is convenient …… you, please let me know.
+to			B. at			C. with			D. for
+33. Do you always take your credit card …… you when you go abroad?
+      A. with			B. on			C. in			D. to
+34. The new computer is …… than my old one.
+fast			B. faster		C. more fast		D. fastest
+35. You …… use your date of birth as a password.
+      A. ‘re not allowed		B. mustn’t		C. shouldn’t		D. mightn’t 
+
+21.B 22.B 23.B 24.A 25.A 26.A 27.C 28.C 29.C 30.D 31.D 32.D 33.A 34.B 35.C
+
+21. I ………. from home today, creating a new office program. 
+A work			B. am working		C. working		D. works
+22. John: ………. hits do they get each week? - Tom: About 1,500.
+A. How long    		B. How many     	C. How much     	D. How often
+23. A: ………. do you use Facebook? B: In the evening.
+A. How long 		B. When		C. How often 		D. Why
+24. There ………. a lot of information on the first site.
+A. is 			B. are 			C. has 			D. have
+25. You must put that ………. the first column.
+A. on			B. in			C. at			D. for
+26. What’s the difference ………. these two systems?
+A. among			B. for			C. between		D. with 
+27. Akil works ………. a big computer company.
+A. for			B. with			C. on			D. into
+28. How many people can access the information ………. the same time?
+A. for			B. at			C. on			D. in
+29. We organise the data ………. relevant groups.
+A. in			B. on			C. into			D. for 
+30. Can you help me ………. the new database, please?
+A. with 			B. on			C. in			D. for
+31. I ………. work in the office all the time. I can work from home three days a week. 
+A don’t have to 		B mustn’t		C can’t			D. don’t need
+32. They aren’t ………. to share their passwords with anyone.
+permitted		B. reccomend		C. mustn’t 		D. need
+33. When the customer places the order, our server will confirm ………. .
+A. available		B. avail		C. availably		D. availability 
+34. Would you like to join me ………. lunch?
+A. with 			B. on			C. in			D. For
+35. We haven’t got much knowledge about e-commerce ……….. .
+       A. secure 			B. secured		C. securely		D. security 
+
+21.B 22.B 23.B 24.A 25.B 26.C 27.A 28.B 29.C 30.A31.A 32.A 33.D 34.D 35.D
+
+21. He’s based in the London office but he often ……… around Europe. 
+A. travels			B. travelling		C. is travelling		D. travel
+22. Lory: …………… do people visit entertainment sites?	
+      Daniel: Because they want to relax. 
+A. How often 		B. Why 		C. When 		D. What
+23. Marie: …………… can I buy electronic products?		
+      John: Try amazon.com.
+What 			B. Which     		C. Where		D. Why
+24. There ……… many photos on the site.
+A. are 			B. is 			C. has 			D. have
+25. …………… (you / phone) him to ask what’s wrong?
+A. Did you phone					C. Do you phone
+B. Have you phoned 				D. Had you phoned
+26. I’ll check the information ……… the internet.
+A. at			B. in			C on			D. over
+27. We aren’t permitted to download files from the internet ……… authorization.
+A. without			B. not			C. no			D. with no 
+28. We aren’t ……… use social networking sites at work.
+A. needed			B. allowed to 		C. shouldn’t		D. advised
+29. You ……… put your cup of coffee on the computer.
+    A. don’t need		B. mightn’t		C. mustn’t		D. should
+30. How about ……… the modem?
+    A. changing		B. to change		C. change		D. changes
+31. This is the ……… efficient anti-virus software.
+A. more			B. most 		C. worse 		D. better
+32. Make sure all cables are plugged ……….. .
+A.  on			B. into			C. in			D. at  
+33. You are responsible ……… setting up firewalls, security levels, wireless connection, usernames and passwords.
+A. in			B. with		 	C. about		D. for
+34. Sara is ……… a training course today. She’s learning about the new database system.
+A. at			B. in			C. for			D. on
+35. Next you get a ……… to write the content.
+A. speciality	 	B. special 		C. specially 		D. specialist 
+
+21.A 22.B 23.C 24.A 25.B 26.C 27.A 28.B 29.C 30.A 31.B 32.C 33.D 34.D 35.D
+
+This is the .......... problem we’ve had with the system.
+A. bad			B. worse		C. most worse		D. worst
+Has he .......... the training course yet?
+A. do			B did			C. doing		D. done 
+‘How .......... do they defrag their computers?’ ‘Every Monday morning.’
+A. many		B. often		C. long		D. much
+.......... you recommend an external hard drive, please?
+A. Should		B. Could		C. May		D. Must
+‘When .......... you unplug the printer?’ ‘Ten minutes ago.’
+A. have		B. are			C. did			D. do
+You .......... be late tomorrow. The big boss is coming to our office.
+A. mightn’t		B. couldn’t		C. mustn’t		D. wouldn’t
+The new office program is .......... efficient and faster than our existing program.
+more		B. the best		C. best			D. much
+We .......... installing a new network system, so you must all have new usernames and passwords.
+A. are			B. do			C. have		D. make
+You need to retrieve the data .......... the database 
+from		B. on			C. in			D. with
+You need more PINs and passwords; it is more difficult .......... remember them all.
+A. to			B. at			C. in			D. on
+31. Do you want to know what the database is used for? Well, it is used .......... store information about all our books. 
+A. for			B. to			C. so			D. by
+      32. I’m interested .......... investing in the IT business. I’d like to buy some shares in Google. 
+A. on			B. in			C. into			D. at
+      33. Eric Larsen graduated .......... university in 2006.
+	A. at			B. in			C. from		D. to
+      34. Laptop A has a .......... memory than Laptop B.
+best		B. light		C. bigger		D. heavier
+      35. A screwdriver is used .......... screws.
+	A. for tighten		B. to tightening	C. for tightening	D. tighten
+	
+21. D 22. D 23. B 24. B 25. C 26. C 27. A 28. A 29. A 30. A 31. B 32. B 33. C 34. C 35. C 
+Choose the best answer to complete each sentence. 
+
+21. Has he .......... the training course yet?
+A. do		B did			C. done		D. doing
+22. TV and computer screens are usually measured .......... inches.	
+A. with		B. by			C. in			D. at
+23. Turn on your computer. It will usually take a few minutes ...........
+A. boot up		B. booting up		C. to boot up		D. to booting up
+24. On my computer, I have a picture of my cat .......... the desktop background.
+A. as 		B. is			C. on			D. at
+25. Deleted documents stay in the recycle bin .......... you empty it.
+A. until		B. if			C. while		D. during
+26. If I leave my computer on without using it, after a while it goes .......... standby mode.
+A. into		B. in			C. on			D. to
+27. You  .......... to disconnect the keyboard.
+A. mustn’t 	B. aren’t permitted 	C. won’t		D. cannot
+28. My job is to report any incidents immediately .......... the IT manager.
+A. with		B. to			C. for			D. on
+29. The second site .......... excellent graphics. 
+A. is 		B. are 		 	C. have		D. has
+30. You .......... use your date of birth as a password.
+A. not allowed 	B. advised		C. mustn’t		D. shouldn’t 
+31. John: .......... do you spend on the site each day? - Maria: About an hour.
+A. How long     	B. How much     	C. How many     	D. How often
+32. Danny: .......... website do you go to? - Harry: I like news websites.
+A. Where 		B. What 		C. How		D. Why 
+33. This is the .......... problem we’ve had with the system.
+A. bad		B. worse		C. worst		D. most worse
+34. ‘How .......... do they defrag their computers?’ ‘Every Monday morning.’
+A. many		B. much		C. long			D. often 
+35. .......... you recommend an external hard drive, please?
+A. Could		B. Should		C. May		D. Must
+
+21. C 22. C 23. C 24. A 25. A 26. A 27. B 28. B 29. D 30. D 31. A 32. B 33. C 34. D 35. A 
+
+
+
+
+
