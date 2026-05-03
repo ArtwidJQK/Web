@@ -3,6 +3,8 @@ import { supabase } from '@/lib/supabase';
 import { extractTokenFromHeader, verifyToken } from '@/lib/jwt';
 import { ErrorType } from '@/lib/types';
 
+export const dynamic = 'force-dynamic';
+
 function classifyError(
   _question: any,
   _userAnswer: string,
@@ -41,6 +43,13 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { exam_id, answers } = body;
 
+    if (!exam_id || !Array.isArray(answers) || answers.length === 0) {
+      return NextResponse.json(
+        { success: false, error: 'Invalid attempt payload' },
+        { status: 400 }
+      );
+    }
+
     // Get exam questions
     const { data: exam, error: examError } = await supabase
       .from('exams')
@@ -58,6 +67,8 @@ export async function POST(req: NextRequest) {
 
     if (questionsError) throw questionsError;
 
+    const questionsById = new Map((questions || []).map((question) => [question.id, question]));
+
     // Grade answers
     let correctCount = 0;
     const errorDistribution: Record<ErrorType, number> = {
@@ -70,8 +81,13 @@ export async function POST(req: NextRequest) {
 
     const skillBreakdown: Record<string, {correct: number; total: number}> = {};
     const questionAttempts = answers.map((answer: any) => {
-      const question = questions?.find(q => q.id === answer.question_id);
-      const isCorrect = answer.answer === question.answer;
+      const question = questionsById.get(answer.question_id);
+      if (!question) {
+        throw new Error(`Question not found: ${answer.question_id}`);
+      }
+
+      const userAnswer = answer.answer || '';
+      const isCorrect = userAnswer === question.answer;
 
       if (isCorrect) correctCount++;
 
@@ -85,26 +101,29 @@ export async function POST(req: NextRequest) {
       }
 
       // Classify error
-      const errorType = isCorrect
+      const submittedErrorType = answer.error_type as ErrorType | undefined;
+      const errorType: ErrorType = isCorrect
         ? 'unknown'
-        : classifyError(question, answer.answer, question.answer);
+        : submittedErrorType && submittedErrorType in errorDistribution
+          ? submittedErrorType
+          : classifyError(question, userAnswer, question.answer);
       if (errorType !== 'unknown') {
         errorDistribution[errorType]++;
       }
 
       return {
         question_id: answer.question_id,
-        user_answer: answer.answer,
+        user_answer: userAnswer,
         correct_answer: question.answer,
         is_correct: isCorrect,
         time_spent: answer.time_spent || 0,
         error_type: isCorrect ? null : errorType,
-        skipped: !answer.answer,
+        skipped: !userAnswer,
       };
     });
 
     // Calculate accuracy
-    const totalAccuracy = (correctCount / answers.length) * 100;
+    const totalAccuracy = (correctCount / questionAttempts.length) * 100;
 
     // Convert skill breakdown to percentages
     const skillAccuracy: Record<string, number> = {};
@@ -136,20 +155,57 @@ export async function POST(req: NextRequest) {
       .eq('user_id', userId)
       .single();
 
+    const weakSkills = Object.entries(skillAccuracy)
+      .filter(([, accuracy]) => accuracy < 80)
+      .map(([skill]) => skill);
+
     if (currentStats) {
       const newAccuracyTrend = [...(currentStats.accuracy_trend || []), totalAccuracy];
       if (newAccuracyTrend.length > 4) newAccuracyTrend.shift();
 
+      const mergedSkillAccuracy = {
+        ...(currentStats.skill_accuracy || {}),
+        ...skillAccuracy,
+      };
+      const mergedErrorDistribution = {
+        ...(currentStats.error_distribution || {}),
+      };
+      for (const [key, value] of Object.entries(errorDistribution)) {
+        mergedErrorDistribution[key] = (mergedErrorDistribution[key] || 0) + value;
+      }
+
       await supabase
         .from('user_stats')
         .update({
-          skill_accuracy: skillAccuracy,
+          skill_accuracy: mergedSkillAccuracy,
+          weak_skills: weakSkills,
           accuracy_trend: newAccuracyTrend,
-          total_questions_done: (currentStats.total_questions_done || 0) + answers.length,
+          total_questions_done:
+            (currentStats.total_questions_done || 0) + questionAttempts.length,
           last_exam_date: new Date().toISOString(),
-          error_distribution: errorDistribution,
+          error_distribution: mergedErrorDistribution,
         })
         .eq('user_id', userId);
+    } else {
+      await supabase.from('user_stats').insert({
+        user_id: userId,
+        skill_accuracy: skillAccuracy,
+        weak_skills: weakSkills,
+        total_questions_done: questionAttempts.length,
+        last_exam_date: new Date().toISOString(),
+        accuracy_trend: [totalAccuracy],
+        error_distribution: errorDistribution,
+      });
+    }
+
+    if (weakSkills.length > 0 || totalAccuracy < 80) {
+      const recommendedSkill = weakSkills[0] || 'grammar';
+      await supabase.from('practice_recommendations').insert({
+        user_id: userId,
+        recommended_skill: recommendedSkill,
+        recommended_count: 20,
+        reason: `Accuracy ${totalAccuracy.toFixed(1)}%, focus on ${recommendedSkill}.`,
+      });
     }
 
     return NextResponse.json({

@@ -6,7 +6,6 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {
-    // Verify auth
     const token = extractTokenFromHeader(req.headers.get('authorization') || '');
     if (!token) {
       return NextResponse.json(
@@ -23,41 +22,27 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const userId = decoded.userId;
-
-    // Get user stats
-    const { data: stats, error } = await supabase
-      .from('user_stats')
+    const { data, error } = await supabase
+      .from('practice_recommendations')
       .select('*')
-      .eq('user_id', userId)
-      .single();
-
-    if (error) {
-      return NextResponse.json(
-        { success: false, error: 'Stats not found' },
-        { status: 404 }
-      );
-    }
-
-    // Get recent attempts
-    const { data: attempts } = await supabase
-      .from('attempts')
-      .select('id, total_accuracy, skill_breakdown, created_at')
-      .eq('user_id', userId)
+      .eq('user_id', decoded.userId)
+      .eq('status', 'active')
       .order('created_at', { ascending: false })
-      .limit(10);
+      .limit(1)
+      .maybeSingle();
+
+    if (error) throw error;
 
     return NextResponse.json({
       success: true,
       data: {
-        stats,
-        recent_attempts: attempts || [],
+        recommendation: data || null,
       },
     });
   } catch (error) {
-    console.error('Get stats error:', error);
+    console.error('Recommendation error:', error);
     return NextResponse.json(
-      { success: false, error: 'Failed to fetch stats' },
+      { success: false, error: 'Failed to fetch recommendation' },
       { status: 500 }
     );
   }

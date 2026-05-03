@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Navbar } from "@/components/shared/Navbar";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "English Learning Platform",
@@ -14,7 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
       </body>
     </html>
   );

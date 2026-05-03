@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(
   req: NextRequest,
   { params }: { params: { exam_id: string } }
@@ -23,18 +25,25 @@ export async function GET(
     }
 
     // Get questions
-    const { data: questions, error: questionError } = await supabase
+    const { data: rawQuestions, error: questionError } = await supabase
       .from('questions')
       .select('*')
       .in('id', exam.question_ids);
 
     if (questionError) throw questionError;
 
+    const questionsById = new Map(
+      (rawQuestions || []).map((question) => [question.id, question])
+    );
+    const questions = exam.question_ids
+      .map((id: string) => questionsById.get(id))
+      .filter(Boolean);
+
     return NextResponse.json({
       success: true,
       data: {
         exam,
-        questions: questions || [],
+        questions,
       },
     });
   } catch (error) {

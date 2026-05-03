@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
+import { shuffle } from '@/lib/utils';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {
@@ -18,10 +21,7 @@ export async function GET(req: NextRequest) {
       query = query.eq('difficulty', difficulty);
     }
 
-    // Random order, limit, exclude file source (to avoid repetition)
-    const { data: questions, error, count } = await query
-      .eq('source', 'generated')
-      .limit(limit);
+    const { data: questions, error } = await query.limit(500);
 
     if (error) {
       return NextResponse.json(
@@ -33,8 +33,8 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({
       success: true,
       data: {
-        questions: questions || [],
-        total: count || 0,
+        questions: shuffle(questions || []).slice(0, limit),
+        total: questions?.length || 0,
       },
     });
   } catch (error) {

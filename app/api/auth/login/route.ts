@@ -4,6 +4,8 @@ import { z } from 'zod';
 import { supabase } from '@/lib/supabase';
 import { signToken } from '@/lib/jwt';
 
+export const dynamic = 'force-dynamic';
+
 const LoginSchema = z.object({
   username: z.string(),
   password: z.string(),
