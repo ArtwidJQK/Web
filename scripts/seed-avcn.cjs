@@ -241,10 +241,12 @@ function parseAvcnFile() {
 
       return {
         question_text: question.question_text,
+        text: question.question_text,
         answer: question.answer,
         options: question.options,
         skill,
         difficulty,
+        difficulty_score: difficulty === 'easy' ? 0.25 : difficulty === 'hard' ? 0.8 : 0.5,
         topic: question.topic,
         explanation: answerText
           ? `Correct answer: ${question.answer}. ${answerText}`

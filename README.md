@@ -1,6 +1,14 @@
 # AVCN English Learning Platform
 
-Next.js 14 app for practicing the AVCN vocabulary and grammar question bank.
+Next.js 14 learning platform for practicing the AVCN vocabulary and grammar question bank.
+
+Current product-grade additions:
+
+- Adaptive practice modes: normal, weakness, wrong-only
+- Single-answer feedback loop: answer -> explanation -> next
+- Exam submit with persisted attempt, answer rows, and full review
+- Learning tables: `answers`, `user_skill_stats`, `wrong_questions`
+- Restrained dark design system built for low cognitive load
 
 ## Local Setup
 
@@ -19,7 +27,7 @@ JWT_SECRET=change_me
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
-Run `database.sql` in Supabase SQL Editor, then seed the questions:
+Run `database.sql` in Supabase SQL Editor, then seed the questions. If you already ran an older MVP schema, run `database.sql` again; it includes additive migrations for the learning engine tables.
 
 ```powershell
 npm.cmd run seed:dry
@@ -43,9 +51,10 @@ Open `http://localhost:3000`.
 Main flows:
 
 - Register or login.
-- Dashboard shows skill accuracy, errors, and recent attempts.
-- Practice creates a 20-question session and updates stats after submit.
+- Dashboard shows recent performance, weakest skill, wrong questions, and next action.
+- Practice supports normal, weakness, and wrong-only sessions.
 - Exam Select opens fixed exams from `avcn.txt` or generates a random exam.
+- Exam results include full review, wrong-answer highlight, and explanation.
 
 ## Verification
 

@@ -8,7 +8,9 @@ import { Button } from '@/components/shared/Button';
 import { Card } from '@/components/shared/Card';
 import { ExamResults } from '@/components/exam/ExamResults';
 import { Timer } from '@/components/exam/Timer';
-import { QuestionCard } from '@/components/practice/QuestionCard';
+import { ProgressBar } from '@/components/learning/ProgressBar';
+import { QuestionCard } from '@/components/learning/QuestionCard';
+import { SkillTag } from '@/components/learning/SkillTag';
 import { useAuth } from '@/context/AuthContext';
 import { apiRequest } from '@/lib/client-api';
 import { ErrorType, Exam, Question } from '@/lib/types';
@@ -22,8 +24,15 @@ type ExamDetail = {
 type ResultPayload = {
   attempt_id: string;
   accuracy: number;
+  score: number;
   skill_breakdown: Record<string, number>;
   error_distribution: Record<ErrorType, number>;
+  review: Array<{
+    question: Question;
+    selected: string;
+    correct: boolean;
+    correct_answer: string;
+  }>;
 };
 
 type SavedAnswer = {
@@ -89,14 +98,16 @@ function ExamContent() {
     setIsSubmitting(true);
     setError('');
     try {
-      const data = await apiRequest<ResultPayload>('/api/attempts', {
+      const totalTime = (exam.time_limit || 60) * 60 - secondsLeft;
+      const data = await apiRequest<ResultPayload>('/api/submit-exam', {
         method: 'POST',
         token,
         body: JSON.stringify({
           exam_id: exam.id,
+          total_time: Math.max(0, totalTime),
           answers: questions.map((question) => ({
             question_id: question.id,
-            answer: answers[question.id]?.answer || '',
+            selected: answers[question.id]?.answer || '',
             time_spent: answers[question.id]?.time_spent || 0,
           })),
         }),
@@ -108,7 +119,7 @@ function ExamContent() {
     } finally {
       setIsSubmitting(false);
     }
-  }, [answers, exam, questions, token]);
+  }, [answers, exam, questions, secondsLeft, token]);
 
   useEffect(() => {
     if (!exam || result) return;
@@ -130,6 +141,24 @@ function ExamContent() {
       submitExam();
     }
   }, [questions.length, result, secondsLeft, submitExam]);
+
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (!currentQuestion || result) return;
+      const keyMap: Record<string, string> = {
+        '1': 'A',
+        '2': 'B',
+        '3': 'C',
+        '4': 'D',
+      };
+      if (keyMap[event.key]) {
+        selectAnswer(keyMap[event.key]);
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  });
 
   function selectAnswer(answer: string) {
     if (!currentQuestion) return;
@@ -156,6 +185,7 @@ function ExamContent() {
           accuracy={result.accuracy}
           errorDistribution={result.error_distribution}
           onRetake={loadExam}
+          review={result.review}
           skillBreakdown={result.skill_breakdown}
           totalTime={Math.max(0, totalSeconds)}
         />
@@ -164,13 +194,16 @@ function ExamContent() {
   }
 
   return (
-    <main className="container-main grid gap-6 py-8">
-      <div className="flex flex-wrap items-center justify-between gap-4">
+    <main className="container-main grid gap-8 py-8">
+      <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
         <div>
-          <p className="text-sm font-semibold text-coral">Exam</p>
-          <h1 className="mt-1 text-3xl font-bold text-white">
+          <p className="meta-text text-coral">Exam mode</p>
+          <h1 className="page-title mt-2">
             {exam?.name || 'Loading exam'}
           </h1>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-slate-400">
+            Clear progress, visible time pressure, keyboard answers 1-4.
+          </p>
         </div>
         <Timer secondsLeft={secondsLeft} />
       </div>
@@ -190,12 +223,17 @@ function ExamContent() {
         </Card>
       ) : (
         <>
-          <Card className="p-3">
-            <div className="mb-3 flex items-center justify-between text-sm text-slate-300">
-              <span>
+          <ProgressBar
+            label={`Answered ${answeredCount}/${questions.length}`}
+            value={(answeredCount / questions.length) * 100}
+          />
+
+          <Card className="p-4">
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+              <SkillTag tone="accent">
                 Answered {answeredCount}/{questions.length}
-              </span>
-              <span>{Object.values(flags).filter(Boolean).length} flagged</span>
+              </SkillTag>
+              <SkillTag>{Object.values(flags).filter(Boolean).length} flagged</SkillTag>
             </div>
             <div className="grid grid-cols-5 gap-2 sm:grid-cols-10 md:grid-cols-[repeat(25,minmax(0,1fr))]">
               {questions.map((question, index) => {
@@ -204,10 +242,10 @@ function ExamContent() {
                 return (
                   <button
                     className={cn(
-                      'h-9 rounded-md border border-slate-700 text-xs font-semibold text-slate-300 transition hover:border-coral',
-                      index === currentIndex && 'border-coral bg-coral/15 text-white',
-                      answered && 'bg-emerald-500/15 text-emerald-200',
-                      flagged && 'border-amber-300 text-amber-200'
+                      'h-10 rounded-md bg-surface-strong text-xs font-semibold text-slate-300 transition hover:-translate-y-0.5 hover:bg-slate-700 focus-ring',
+                      index === currentIndex && 'bg-coral text-navy',
+                      answered && index !== currentIndex && 'bg-emerald-300 text-navy',
+                      flagged && index !== currentIndex && 'bg-amber-300 text-navy'
                     )}
                     key={question.id}
                     onClick={() => goToQuestion(index)}
@@ -232,6 +270,7 @@ function ExamContent() {
             }
             question={currentQuestion}
             selectedAnswer={selectedAnswer}
+            showExplanation={false}
             total={questions.length}
           />
 

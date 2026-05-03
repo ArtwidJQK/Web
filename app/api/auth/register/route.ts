@@ -45,6 +45,11 @@ export async function POST(req: NextRequest) {
       error_distribution: {},
     });
 
+    await supabase.from('user_skill_stats').insert([
+      { user_id: data.id, skill: 'vocab', correct_count: 0, wrong_count: 0 },
+      { user_id: data.id, skill: 'grammar', correct_count: 0, wrong_count: 0 },
+    ]);
+
     const token = signToken(data.id);
 
     return NextResponse.json({
