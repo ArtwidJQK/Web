@@ -8,11 +8,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'navy': '#0f172a',
-        'navy-light': '#1e293b',
-        'coral': '#ff6b6b',
-        'coral-light': '#ff8787',
-        'lotus': '#f5f5f5',
+        'navy': '#080B10',
+        'navy-light': '#111722',
+        'surface': '#151B26',
+        'surface-strong': '#1E2633',
+        'coral': '#FF7A59',
+        'coral-light': '#FF9A7E',
+        'lotus': '#F4F1EA',
+      },
+      boxShadow: {
+        'lift': '0 16px 40px rgba(0, 0, 0, 0.18)',
       },
     },
   },

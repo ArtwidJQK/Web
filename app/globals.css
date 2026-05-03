@@ -7,29 +7,46 @@ html {
 }
 
 body {
-  @apply bg-navy text-white;
+  @apply bg-navy text-lotus antialiased;
+  font-size: 16px;
 }
 
 a {
-  @apply text-coral hover:text-coral-light transition-colors;
+  @apply text-coral transition-colors hover:text-coral-light;
 }
 
 button {
-  @apply transition-colors duration-200;
+  @apply transition duration-200;
 }
 
 .btn-primary {
-  @apply bg-coral hover:bg-coral-light text-white font-semibold py-2 px-4 rounded;
+  @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-md bg-coral px-4 py-2 text-sm font-semibold text-navy transition hover:-translate-y-0.5 hover:bg-coral-light focus:outline-none focus:ring-2 focus:ring-coral focus:ring-offset-2 focus:ring-offset-navy;
 }
 
 .btn-secondary {
-  @apply bg-navy-light hover:bg-navy border border-coral text-coral font-semibold py-2 px-4 rounded;
+  @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-md bg-surface-strong px-4 py-2 text-sm font-semibold text-lotus transition hover:-translate-y-0.5 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-coral focus:ring-offset-2 focus:ring-offset-navy;
 }
 
 .card {
-  @apply bg-navy-light rounded-lg p-6 border border-navy;
+  @apply rounded-md bg-surface p-6;
 }
 
 .container-main {
-  @apply max-w-7xl mx-auto px-4;
+  @apply mx-auto max-w-7xl px-4 sm:px-6;
+}
+
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-coral focus:ring-offset-2 focus:ring-offset-navy;
+}
+
+.page-title {
+  @apply text-4xl font-semibold leading-tight tracking-normal text-lotus;
+}
+
+.section-title {
+  @apply text-2xl font-semibold leading-tight text-lotus;
+}
+
+.meta-text {
+  @apply text-sm font-medium text-slate-400;
 }

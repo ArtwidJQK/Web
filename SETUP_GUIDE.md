@@ -1,16 +1,17 @@
 # English Learning Platform - Setup Guide
 
-Project status: functional MVP.
+Project status: product-grade learning MVP.
 
 Implemented:
 
 - Next.js 14 App Router setup
 - JWT auth with register/login pages
 - Dashboard with stats, recent attempts, skill chart, and error chart
-- Practice mode with 20-question generated sessions
+- Practice mode with normal, weakness, and wrong-only adaptive sessions
 - Exam select with fixed and random exams
-- Exam interface with timer, navigation, flags, submit, and results
-- Supabase API routes for auth, questions, exams, attempts, stats, recommendation
+- Exam interface with timer, navigation, flags, submit, results, and full review
+- Supabase API routes for auth, adaptive questions, single answers, exam submit, stats, history
+- Learning engine tables: `answers`, `user_skill_stats`, `wrong_questions`
 - AVCN parser/seed script for `avcn.txt`
 
 ## 1. Install
@@ -40,6 +41,8 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
 Open Supabase SQL Editor and run `database.sql`.
+
+If you already ran the old MVP schema, run `database.sql` again. It is written to add the new learning-engine columns/tables without dropping existing data.
 
 ## 3. Seed Data
 
@@ -74,9 +77,11 @@ Open `http://localhost:3000`.
 Flow:
 
 1. Register.
-2. Go to Practice or Exam.
-3. Submit answers.
-4. Check Dashboard stats.
+2. Go to Practice and choose Normal, Weakness, or Wrong-only.
+3. Answer with mouse or keys `1`-`4`.
+4. Read the explanation before moving to the next question.
+5. Take an exam and review wrong answers after submit.
+6. Check Dashboard for weakest skill and next action.
 
 ## 5. Verify
 

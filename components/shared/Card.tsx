@@ -10,7 +10,7 @@ export function Card({
   return (
     <section
       className={cn(
-        'rounded-md border border-slate-700 bg-slate-900/80 p-5 shadow-sm',
+        'rounded-md bg-surface p-6',
         className
       )}
     >

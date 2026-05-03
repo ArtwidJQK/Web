@@ -17,6 +17,7 @@ export interface User {
 export interface Question {
   id: string;
   question_text: string;
+  text?: string;
   answer: string; // A, B, C, D
   options: {
     A: string;
@@ -26,6 +27,7 @@ export interface Question {
   };
   skill: 'vocab' | 'grammar';
   difficulty: 'easy' | 'medium' | 'hard';
+  difficulty_score?: number;
   topic?: string;
   explanation: string;
   source: 'file' | 'generated';
@@ -61,9 +63,34 @@ export interface Attempt {
   question_attempts: QuestionAttempt[];
   total_time: number; // seconds
   total_accuracy: number; // 0-100
+  score?: number;
   skill_breakdown: Record<string, number>; // {vocab: 85, grammar: 75}
   error_distribution: Record<ErrorType, number>;
   created_at: string;
+}
+
+export interface AnswerRecord {
+  id: string;
+  attempt_id: string;
+  question_id: string;
+  selected: string;
+  correct: boolean;
+  created_at: string;
+}
+
+export interface UserSkillStat {
+  user_id: string;
+  skill: string;
+  correct_count: number;
+  wrong_count: number;
+  last_updated: string;
+}
+
+export interface WrongQuestion {
+  user_id: string;
+  question_id: string;
+  wrong_count: number;
+  last_seen: string;
 }
 
 export interface UserStats {

@@ -1,40 +1,38 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
-import { shuffle } from '@/lib/utils';
+import { PracticeMode, selectAdaptiveQuestions } from '@/lib/learning-engine';
+import { requireUser } from '@/lib/server-auth';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {
+    const auth = requireUser(req);
+    if (auth.error) return auth.error;
+
     const { searchParams } = new URL(req.url);
     const skill = searchParams.get('skill');
-    const difficulty = searchParams.get('difficulty');
-    const limit = parseInt(searchParams.get('limit') || '20');
+    const mode = (searchParams.get('mode') || 'random') as PracticeMode;
+    const limit = Math.min(parseInt(searchParams.get('limit') || '20'), 50);
 
-    let query = supabase.from('questions').select('*');
-
-    if (skill) {
-      query = query.eq('skill', skill);
-    }
-
-    if (difficulty) {
-      query = query.eq('difficulty', difficulty);
-    }
-
-    const { data: questions, error } = await query.limit(500);
-
-    if (error) {
+    if (!['random', 'weak', 'wrong'].includes(mode)) {
       return NextResponse.json(
-        { success: false, error: error.message },
+        { success: false, error: 'Invalid question mode' },
         { status: 400 }
       );
     }
 
+    const questions = await selectAdaptiveQuestions({
+      userId: auth.userId,
+      mode,
+      limit,
+      skill,
+    });
+
     return NextResponse.json({
       success: true,
       data: {
-        questions: shuffle(questions || []).slice(0, limit),
-        total: questions?.length || 0,
+        questions,
+        total: questions.length,
       },
     });
   } catch (error) {
