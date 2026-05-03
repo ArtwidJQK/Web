@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-navy text-white;
+}
+
+a {
+  @apply text-coral hover:text-coral-light transition-colors;
+}
+
+button {
+  @apply transition-colors duration-200;
+}
+
+.btn-primary {
+  @apply bg-coral hover:bg-coral-light text-white font-semibold py-2 px-4 rounded;
+}
+
+.btn-secondary {
+  @apply bg-navy-light hover:bg-navy border border-coral text-coral font-semibold py-2 px-4 rounded;
+}
+
+.card {
+  @apply bg-navy-light rounded-lg p-6 border border-navy;
+}
+
+.container-main {
+  @apply max-w-7xl mx-auto px-4;
+}
